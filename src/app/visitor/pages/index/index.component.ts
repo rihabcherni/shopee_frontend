@@ -35,12 +35,11 @@ export class IndexComponent implements OnInit {
       .subscribe(categories => {
         this.categories = categories.map(category => ({
           name: category.name,
-          products: null // Initialize products as null, we'll fetch them later
+          products: null
         }));
-        // Update segmentList and selectedSegment
+        this.categories.unshift({ name: 'All', products: null });
         this.segmentList = this.categories.map(category => category.name);
         this.selectedSegment = this.segmentList[0];
-        // Fetch products for the initial selected category
         this.selectCategory(this.selectedSegment);
       });
   }
@@ -48,11 +47,16 @@ export class IndexComponent implements OnInit {
   selectCategory(categoryName: string) {
     this.selectedSegment = categoryName;
     if (categoryName === 'All') {
-      this.filteredProducts = [].concat(...this.categories.map(category => category.products));
+      this.http.get<any[]>(`http://127.0.0.1:8000/api/products/products/`)
+      .subscribe(products => {
+        this.filteredProducts = products;
+        console.log(products)
+      });
+
+
     } else {
       const selectedCategory = this.categories.find(category => category.name === categoryName);
       if (selectedCategory) {
-        // Fetch products for the selected category
         this.http.get<any[]>(`http://127.0.0.1:8000/api/products/product/${categoryName}`)
           .subscribe(products => {
             selectedCategory.products = products;
@@ -67,7 +71,6 @@ export class IndexComponent implements OnInit {
   }
 
   searchProducts(event: any) {
-    // Implement your search logic here
     console.log('Searching products for:', this.searchQuery);
   }
 

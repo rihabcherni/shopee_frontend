@@ -1,4 +1,4 @@
-<ion-header slot="fixed" [translucent]="true">
+<ion-header class="header-product" slot="fixed" [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
@@ -26,54 +26,33 @@
         <ion-grid>
           <ion-row>
             <ng-container *ngFor="let product of filteredProducts; let i = index">
-              <ion-col size="6" *ngIf="i % 2 === 0">
-                <ion-card *ngIf="filteredProducts[i]">
-                  <ion-img [src]="filteredProducts[i].imageUrl"></ion-img>
+              <ion-col size-md="6" size-lg="4" size="6" >
+                <ion-card *ngIf="filteredProducts[i]" class="product-card">
+                  <ion-img [src]="filteredProducts[i].image" class="product-image"></ion-img>
                   <ion-card-header>
                     <ion-card-title>{{ filteredProducts[i].name }}</ion-card-title>
-                    <p>{{ filteredProducts[i].category }}</p>
+                    <p>{{ filteredProducts[i].brand }}</p>
                   </ion-card-header>
                   <ion-card-content>
                     <ion-grid>
                       <ion-row>
                         <ion-col size="7" >
-                          <p class="price"> {{ filteredProducts[i].price }}</p>
-                          <p> {{ filteredProducts[i].sold }}%</p>
-                        </ion-col>
-                        <ion-col  size="5" >
-                          <ion-badge>{{ filteredProducts[i].rating }}</ion-badge>
-                        </ion-col>
-                      </ion-row>
-                    </ion-grid>
-
-                  </ion-card-content>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" *ngIf="filteredProducts[i + 1]">
-                <ion-card>
-                  <p class="sold"> {{ filteredProducts[i+1].sold }}%</p>
-                  <ion-img [src]="filteredProducts[i + 1].imageUrl"></ion-img>
-                  <ion-card-header>
-                    <ion-card-title>
-                      <span class="category"> {{ filteredProducts[i+1].category }}</span>
-                      <p class="product">{{ filteredProducts[i + 1].name }}</p>
-                    </ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-grid>
-                      <ion-row>
-                        <ion-col  size="7" >
-                          <p class="new-price"> {{ filteredProducts[i].newPrice }}</p>
-                          <p class="price"> {{ filteredProducts[i].price }}</p>
+                          <p class="price">${{ filteredProducts[i].price }}</p>
+                          <p class="new-price">${{ filteredProducts[i].price-(filteredProducts[i].price *filteredProducts[i].discount / 100)}}</p>
                         </ion-col>
                         <ion-col  size="5" >
                           <ion-badge class="rating">
                             <ion-icon name="star"></ion-icon>
-                            <span> {{ filteredProducts[i+1].rating }}</span>
+                            <span> {{
+                              filteredProducts[i].total_reviews > 0 ?
+                              filteredProducts[i].total_ratings / filteredProducts[i].total_reviews :
+                              0
+                            }}</span>
                           </ion-badge>
                         </ion-col>
                       </ion-row>
                     </ion-grid>
+
                   </ion-card-content>
                 </ion-card>
               </ion-col>
@@ -84,3 +63,4 @@
     </swiper-wrapper>
   </swiper-container>
 </ion-content>
+
