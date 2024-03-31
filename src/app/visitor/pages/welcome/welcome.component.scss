@@ -1,0 +1,22 @@
+.welcome-image {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  display: block;
+}
+
+.center {
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  text-align:center;
+  width: 50%;
+}
+
+ion-spinner {
+  width: 70px;
+  height: 70px;
+  color: rgba(245,44,0,255)!important;
+}
+

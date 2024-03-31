@@ -1,0 +1,86 @@
+<ion-header slot="fixed" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-searchbar class="custom-search-product" show-clear-button="focus" [(ngModel)]="searchQuery" (ionChange)="searchProducts($event)"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="openLogin()">
+        <ion-icon name="log-in-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-segment mode="md" [(ngModel)]="selectedSegment" scrollable>
+    <ion-segment-button *ngFor="let category of categories" [value]="category.name" (click)="selectCategory(category.name)" [class.ion-activated]="selectedSegment === category.name">
+      <ion-label>{{category.name}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <swiper-container #swiper (swiper)="swiperSlideChanged($event)">
+    <swiper-wrapper>
+      <swiper-slide>
+        <ion-grid>
+          <ion-row>
+            <ng-container *ngFor="let product of filteredProducts; let i = index">
+              <ion-col size="6" *ngIf="i % 2 === 0">
+                <ion-card *ngIf="filteredProducts[i]">
+                  <ion-img [src]="filteredProducts[i].imageUrl"></ion-img>
+                  <ion-card-header>
+                    <ion-card-title>{{ filteredProducts[i].name }}</ion-card-title>
+                    <p>{{ filteredProducts[i].category }}</p>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="7" >
+                          <p class="price"> {{ filteredProducts[i].price }}</p>
+                          <p> {{ filteredProducts[i].sold }}%</p>
+                        </ion-col>
+                        <ion-col  size="5" >
+                          <ion-badge>{{ filteredProducts[i].rating }}</ion-badge>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" *ngIf="filteredProducts[i + 1]">
+                <ion-card>
+                  <p class="sold"> {{ filteredProducts[i+1].sold }}%</p>
+                  <ion-img [src]="filteredProducts[i + 1].imageUrl"></ion-img>
+                  <ion-card-header>
+                    <ion-card-title>
+                      <span class="category"> {{ filteredProducts[i+1].category }}</span>
+                      <p class="product">{{ filteredProducts[i + 1].name }}</p>
+                    </ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col  size="7" >
+                          <p class="new-price"> {{ filteredProducts[i].newPrice }}</p>
+                          <p class="price"> {{ filteredProducts[i].price }}</p>
+                        </ion-col>
+                        <ion-col  size="5" >
+                          <ion-badge class="rating">
+                            <ion-icon name="star"></ion-icon>
+                            <span> {{ filteredProducts[i+1].rating }}</span>
+                          </ion-badge>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ng-container>
+          </ion-row>
+        </ion-grid>
+      </swiper-slide>
+    </swiper-wrapper>
+  </swiper-container>
+</ion-content>
