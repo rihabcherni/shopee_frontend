@@ -6,10 +6,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { VisitorModule } from './visitor/visitor.module';
-import { ClientModule } from './client/client.module';
-import { SellerModule } from './seller/seller.module';
-import { AdminModule } from './admin/admin.module';
+import { VisitorModule } from './modules/visitor/visitor.module';
+import { ClientModule } from './modules/client/client.module';
+import { SellerModule } from './modules/seller/seller.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
   declarations: [AppComponent],

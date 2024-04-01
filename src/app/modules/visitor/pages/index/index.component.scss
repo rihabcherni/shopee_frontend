@@ -1,0 +1,151 @@
+
+.offer-box{
+  background-color: #ffbe68;
+  margin: 0 !important;
+  padding: 4px 10px !important;
+  .offer-title{
+    padding: 0 10px !important;
+    font-size: 18px;
+    font-weight: bold;
+    color: #e05403;
+  }
+  .offer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .discount{
+    background-color: #e05403;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    width: 60px;
+    padding: 6px 8px;
+    text-align: center;
+    vertical-align:middle;
+  }
+}
+
+#scroll::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+ion-toolbar{
+  --background: #f05204;
+  align-items: center;
+  div{
+    padding: 10px;
+    ion-title{
+      text-align: center;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+  }
+}
+#scroll::-webkit-scrollbar{
+	height: 4px;
+	background-color: #F5F5F5;
+}
+#scroll::-webkit-scrollbar-thumb{
+	background-color: #F90;
+	background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,transparent 50%,  rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent)
+}
+
+  ion-segment-button {
+    margin: 10px 3px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+  }
+
+  ion-segment-button.ion-activated {
+    background-color: #f05204;
+    border: 3px solid #e25006;
+    font-weight: bold;
+  }
+  ion-segment-button::part(indicator-background) {
+    background: transparent;
+  }
+  .segment-button-checked.md::part(native) {
+    color: white;
+  }
+  .strokeme {
+    color: white;
+    background-color: white;
+    padding: 3px 8px;
+    font-size: 14px;
+    border-radius: 20px;
+    text-shadow: -1px -1px 0 #e05403, 1px -1px 0 #e05403, -1px 1px 0 #e05403, 1px 1px 0 #e05403;
+  }
+  .rating{
+    background-color: #f05204;
+    border-radius: 20px;
+    padding: 5px 10px !important;
+  }
+  .rating-value{
+    font-size: 18px;
+  }
+  .price{
+    text-decoration: line-through;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .new-price{
+    font-size: 18px;
+    color: #f05204;
+    font-weight: bold;
+  }
+
+.category{
+  font-size: 12px;
+  color: #9b9b9b;
+}
+.product{
+  font-size: 22px;
+  color: #3d3d3d;
+}
+
+
+ion-searchbar.custom-search-product {
+  --background: #f1f2f4  ;
+  --color: rgb(78, 78, 78)  ;
+  --placeholder-color:rgb(125, 125, 125)  ;
+  --border-radius: 20px;
+}
+
+ion-icon {
+  font-size: 25px !important;
+}
+
+
+ion-card {
+  height: 95%;
+  min-width: 250px;
+  margin: 5px;
+  border-radius: 30px;
+}
+.product-image {
+  height: 250px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  ion-row{
+    align-items: center;
+  }
+  .discount{
+    background-color: #e05403;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 6px 8px;
+    text-align: center;
+    vertical-align:middle;
+    min-width: 50px;
+  }
+}
+
+
+
+
+
+

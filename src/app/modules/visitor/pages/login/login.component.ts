@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilService } from '../../../services/util.service';
+import { UtilService } from '../../../../services/util.service';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 

@@ -9,6 +9,7 @@ import { UpdatePasswordComponent } from './pages/update-password/update-password
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { WelcomeLoginComponent } from './pages/welcome-login/welcome-login.component';
 import { IndexComponent } from './pages/index/index.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'inscrire', component: InscrireComponent },
       { path: 'update-password', component: UpdatePasswordComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'product-details/:id', component: ProductDetailsComponent },
     ]
   }
 ];
