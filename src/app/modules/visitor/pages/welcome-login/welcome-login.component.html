@@ -1,3 +1,13 @@
-<p>
-  <img src="../../../../../assets/logo.png" width="60px" />
-</p>
+<ion-content class="welcome-login-page">
+  <ion-grid>
+    <ion-row justify-content-center align-items-center>
+      <ion-col size="12" class="ion-text-center">
+        <img src="assets/logo.png" alt="Logo" class="logo-image">
+        <p>Login to your account lets you receive more offers and promotions while you shop.</p>
+        <img src="assets/hand.png" alt="Another Image" class="another-image">
+        <ion-button  class="first-button" expand="block" (click)="openLogin()">Login</ion-button>
+        <ion-button  class="second-button" expand="block" fill="outline" (click)="skipLogin()">Skip, Go to shop</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

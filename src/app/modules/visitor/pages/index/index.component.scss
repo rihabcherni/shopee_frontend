@@ -25,11 +25,6 @@
     vertical-align:middle;
   }
 }
-
-#scroll::-webkit-scrollbar-track{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #F5F5F5;
-}
 ion-toolbar{
   --background: #f05204;
   align-items: center;
@@ -42,6 +37,20 @@ ion-toolbar{
       font-weight: bold;
     }
   }
+}
+ion-searchbar.custom-search-product {
+  --background: #f1f2f4  ;
+  --color: rgb(78, 78, 78)  ;
+  --placeholder-color:rgb(125, 125, 125)  ;
+  --border-radius: 20px;
+}
+
+ion-icon {
+  font-size: 25px !important;
+}
+#scroll::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
 }
 #scroll::-webkit-scrollbar{
 	height: 4px;
@@ -105,27 +114,26 @@ ion-toolbar{
   color: #3d3d3d;
 }
 
-
-ion-searchbar.custom-search-product {
-  --background: #f1f2f4  ;
-  --color: rgb(78, 78, 78)  ;
-  --placeholder-color:rgb(125, 125, 125)  ;
-  --border-radius: 20px;
-}
-
-ion-icon {
-  font-size: 25px !important;
-}
-
-
 ion-card {
-  height: 95%;
+  height: 100%;
   min-width: 250px;
   margin: 5px;
   border-radius: 30px;
+  ion-button{
+    color: white;
+    --background: #e05403;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  ion-card-title{
+    min-height: 60px;
+    align-items: center;
+    align-items: center;
+    padding: 5px 0;
+  }
 }
 .product-image {
-  height: 250px;
+  height: 220px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -143,9 +151,47 @@ ion-card {
     min-width: 50px;
   }
 }
+.spaced-icon {
+  margin-left:auto;
+}
 
 
-
-
-
-
+.eye-icon {
+  display: none;
+}
+.product-image:hover .eye-icon {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  margin-top: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(167, 167, 167);
+  background-color: #d6d6d6;
+  padding: 15px;
+  border-radius: 50px;
+}
+.product-panier{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e05403;
+  color: white;
+  font-size: 20px;
+  ion-button{
+    --border-radius: 60px;
+    --font-size: 20px;
+  }
+  .cart-button-green{
+    margin-left: 20px;
+  }
+  .cart-button-red{
+    margin-right: 20px !important;
+  }
+}
+.favorite{
+  background-color: #e05403;
+  border-radius: 50px;
+  text-align: center;
+}

@@ -22,6 +22,26 @@ export class IndexComponent implements OnInit {
     { id: 7, name: 'Use code SPRING2 to get 5% off your next order', discount: 5 }
   ];
 
+  toggleItem(product: any) {
+    if (product.quantity === 0) {
+      product.quantity = 1;
+    }
+  }
+  incrementItem(product: any) {
+    product.quantity = (product.quantity || 0) + 1;
+  }
+
+  decrementItem(product: any) {
+    if (product.quantity && product.quantity > 0) {
+      product.quantity--;
+    }
+    console.log(product.quantity)
+  }
+
+
+
+  addToFavorites() {
+  }
 
   @ViewChild('swiper')
   swiperRef: ElementRef | undefined;
@@ -108,8 +128,11 @@ export class IndexComponent implements OnInit {
     if (categoryName === 'All') {
       this.http.get<any[]>('http://127.0.0.1:8000/api/products/products/')
       .subscribe(products => {
-        this.filteredProducts = products;
-        console.log(products)
+        this.filteredProducts = products.map(product => ({
+          ...product,
+          quantity: 0
+        }));
+        console.log(products);
       });
     } else {
       if(subcategoryName==='All'){
@@ -132,7 +155,7 @@ formatDiscount(discount: any): string {
   const discountNumber = parseFloat(discount);
   if (!isNaN(discountNumber)) {
     if (Number.isInteger(discountNumber)) {
-      return discountNumber.toString(); 
+      return discountNumber.toString();
     } else {
       return discountNumber.toFixed(2);
     }
@@ -150,7 +173,7 @@ formatDiscount(discount: any): string {
   }
 
   openLogin() {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/welcome');
   }
 
   swiperReady() {

@@ -1,15 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button class="backbtn" routerLink="" routerDirection="back">
-        <img src="../../../../../assets/logo.png" width="60px" />
-      </ion-button>
-    </ion-buttons>
-    <h1>Login</h1>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="ion-padding">
+  <h1>Welcome</h1>
+  <p>Login to continue</p>
+
   <div class="ion-padding container">
     <div class="form-container">
       <ion-item>
@@ -23,6 +15,7 @@
       </ion-item>
 
       <ion-button expand="block" class="main-button" (click)="login()">Log in</ion-button>
+      <ion-button color="dark" fill="clear"  (click)="openForgot()" routerDirection="forward">Forgot password?</ion-button>
 
       <div class="sign-up">
         Don't have an account?

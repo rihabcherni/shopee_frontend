@@ -1,0 +1,39 @@
+.welcome-login-page{
+  ion-row{
+    padding: 60px;
+  }
+  p{
+    color: rgb(135, 135, 135);
+    font-size: 16px;
+    font-weight: 700;
+  }
+  ion-button.first-button {
+    --background: rgb(226, 74, 3);
+    margin: 20px 0;
+    height: 50px;
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: bold;
+    --border-radius: 15px;
+  }
+  ion-button.second-button{
+    margin: 20px 0;
+    --border-radius: 15px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    --border-color: rgb(226, 74, 3);
+    --color: rgb(226, 74, 3);
+    text-transform: capitalize;
+  }
+  .logo-image {
+    max-width: 240px;
+    margin: 10px;
+  }
+
+  .another-image {
+    max-width: 80px;
+    margin: 20px 0 0 0;
+  }
+}
+

@@ -12,6 +12,7 @@ import { UpdatePasswordComponent } from './pages/update-password/update-password
 import { IndexComponent } from './pages/index/index.component';
 import { FormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { OtpComponent } from './pages/otp/otp.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     ForgotPasswordComponent,
     UpdatePasswordComponent,
     IndexComponent,
+    OtpComponent,
   ]
   ,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

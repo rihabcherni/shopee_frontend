@@ -10,6 +10,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { WelcomeLoginComponent } from './pages/welcome-login/welcome-login.component';
 import { IndexComponent } from './pages/index/index.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { OtpComponent } from './pages/otp/otp.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'home', component: IndexComponent },
       { path: 'login', component: LoginComponent },
       { path: 'inscrire', component: InscrireComponent },
+      { path: 'otp', component: OtpComponent },
       { path: 'update-password', component: UpdatePasswordComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'product-details/:id', component: ProductDetailsComponent },

@@ -1,4 +1,4 @@
-<ion-header class="header-product" slot="fixed" [translucent]="true">
+<ion-header slot="fixed" [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
@@ -30,7 +30,7 @@
       </ion-segment>
     </ion-col>
     <ion-col size="1">
-      <ion-img src="assets/icon/category.jpg"></ion-img>
+      <ion-img style="max-width: 40px;" src="assets/icon/category.jpg"></ion-img>
     </ion-col>
   </ion-row>
 </ion-header>
@@ -48,18 +48,21 @@
           <ion-row>
             <ng-container *ngFor="let product of filteredProducts">
               <ion-col size-md="6" size-lg="4" size="6">
-                <ion-card class="product-card" (click)="openProductDetails(product.id)">
+                <ion-card class="product-card">
                   <ion-card-header class="product-image" [ngStyle]="{ 'background-image': 'url(' + product.image + ')' }">
                     <ion-row>
                       <ion-col size="3">
                         <p class="discount">{{ formatDiscount(product.discount) }}%</p>
                       </ion-col>
-                      <ion-col size="7"></ion-col>
-                      <ion-col size="2">
-                        <ion-icon size="large" name="heart-sharp"></ion-icon>
+                      <ion-col size="6" class="show-more">
+                        <ion-icon name="eye-outline" size="large" class="eye-icon" (click)="openProductDetails(product.id)"></ion-icon>
+                      </ion-col>
+                      <ion-col size="3" class="favorite">
+                        <ion-icon size="large" color="light" name="heart-sharp" (click)="addToFavorites()"></ion-icon>
                       </ion-col>
                     </ion-row>
                   </ion-card-header>
+
                   <ion-card-content>
                     <ion-card-title>{{ product.name }}</ion-card-title>
                     <ion-card-subtitle>{{ product.brand }}</ion-card-subtitle>
@@ -77,7 +80,18 @@
                         </ion-col>
                       </ion-row>
                     </ion-grid>
-                    <ion-button><ion-icon size="large" icon="cart"></ion-icon></ion-button>
+                    <!-- Display the Add button when quantity is 0 -->
+                    <ion-button *ngIf="product.quantity === 0" expand="block" class="cart-button" (click)="toggleItem(product)">
+                      Add
+                      <ion-icon class="spaced-icon" slot="end" size="large" icon="cart"></ion-icon>
+                    </ion-button>
+
+                    <!-- Display the increment/decrement buttons when quantity is greater than 0 -->
+                    <ion-row *ngIf="product.quantity > 0" class="product-panier">
+                      <ion-button color="danger" expand="block" class="cart-button-red" (click)="decrementItem(product)">-</ion-button>
+                      {{ product.quantity }}
+                      <ion-button color="success" expand="block" class="cart-button-green" (click)="incrementItem(product)">+</ion-button>
+                    </ion-row>
                   </ion-card-content>
                 </ion-card>
               </ion-col>

@@ -23,4 +23,7 @@ export class LoginComponent  implements OnInit {
   openInscrire(){
     this.router.navigateByUrl('/inscrire');
   }
+  openForgot(){
+    this.router.navigateByUrl('/forgot-password');
+  }
 }
