@@ -9,22 +9,18 @@ import { SubcategoriesService } from 'src/app/services/subcategories/subcategori
   styleUrls: ['./subcategories.component.scss'],
 })
 export class SubcategoriesComponent  implements OnInit {
-  categories: Category[] = [];
+  categories!: Category;
 
   constructor(private route: ActivatedRoute, private subCategoriesService: SubcategoriesService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const categoryId = params['id'];
-      this.subCategoriesService.getSubcategories(categoryId).subscribe(category => {
-        this.categories = [category as unknown as Category];
-        console.log(category)
+      this.subCategoriesService.getSubcategories(categoryId).subscribe((category: Category) => {
+        this.categories = category;
+        console.log(this.categories);
       });
     });
   }
-
-
 }
-
-
 

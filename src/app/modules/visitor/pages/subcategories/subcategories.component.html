@@ -1,27 +1,20 @@
-<ion-header>
-    <ion-title>Subcategories</ion-title>
+<ion-header *ngIf="categories" style="background-image: url('{{ categories.image }}');">
+  <ion-title class="strokeme">{{ categories.name }}</ion-title>
+  <p class="strokeme2">{{ categories.description }}</p>
 </ion-header>
 
-<ion-content>
-    <ion-item *ngFor="let category of categories">
-      <ion-thumbnail slot="start">
-        <ion-img [src]="category.image"></ion-img>
-      </ion-thumbnail>
-      <ion-label>
-        <h2>{{ category.name }}</h2>
-        <p>{{ category.description }}</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-card lines="full" *ngFor="let category of categories">
-        <ion-item *ngFor="let subcategory of category.subcategories">
-          <ion-thumbnail slot="start">
-            <ion-img [src]="subcategory.image"></ion-img>
-          </ion-thumbnail>
-          <ion-label>
-            <h2>{{ subcategory.name }}</h2>
-            <p>{{ subcategory.description }}</p>
-          </ion-label>
-        </ion-item>
-    </ion-card>
+<ion-content *ngIf="categories">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let subcategory of categories.subcategories">
+        <ion-card >
+          <ion-card-header style="background-image: url('{{ subcategory.image }}');">
+          </ion-card-header>
+          <ion-card-content>
+              <h2 class="title-sub">{{ subcategory.name }}</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

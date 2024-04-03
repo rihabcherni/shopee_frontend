@@ -1,0 +1,50 @@
+ion-header{
+  border-radius: 0px 0px 30px 30px;
+  display: block;
+  padding: 10px 20px;
+  position: relative;
+  -ms-flex-order: -1;
+  order: -1;
+  width: 100%;
+  z-index: 10;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  margin: 0 0 20px;
+ }
+ .strokeme{
+  color: white;
+  padding: 3px 8px;
+  font-size: 30px;
+  text-shadow: -1px -1px 0 #e05403, 1px -1px 0 #e05403, -1px 1px 0 #e05403, 1px 1px 0 #e05403;
+}
+.strokeme2{
+  color: white;
+  padding: 3px 8px;
+  text-shadow: -1px -1px 0 #2e1a0e, 1px -1px 0 #e05403, -1px 1px 0 #e05403, 1px 1px 0 #e05403;
+}
+ion-card-header{
+  border-radius: 0px 0px 30px 30px;
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  position: relative;
+  -ms-flex-order: -1;
+  order: -1;
+  width: 100%;
+  z-index: 10;
+  min-height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+}
+.title-sub{
+  text-align: center;
+  margin: 10px 0 0;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  
+}

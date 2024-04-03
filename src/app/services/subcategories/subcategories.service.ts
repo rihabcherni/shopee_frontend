@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Category } from 'src/app/models/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class SubcategoriesService {
 
   constructor(private http: HttpClient) { }
 
-  getSubcategories(categoryId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}${categoryId}`).pipe(
+  getSubcategories(categoryId: number): Observable<Category> {
+    return this.http.get<Category>(`${this.apiUrl}${categoryId}`).pipe(
       catchError(error => {
         console.error('Error fetching subcategories:', error);
         throw error;
