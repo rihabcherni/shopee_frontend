@@ -1,0 +1,66 @@
+ion-header{
+  background: linear-gradient(180deg, #f9b47c 0%, rgb(255, 68, 0) 100%);
+  border-radius: 0px 0px 30px 30px;
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  position: relative;
+  -ms-flex-order: -1;
+  order: -1;
+  width: 100%;
+  z-index: 10;
+  ion-row{
+    align-items: center;
+  }
+  ion-img{
+    max-width: 200px;
+  }
+  h1{
+    font-size: 30px !important;
+    font-weight: bold !important;
+  }
+ }
+.form-container {
+  margin: 40px;
+  text-align: center;
+
+  ion-item {
+    --padding-start: 10px;
+    --border-color: #DADADA;
+    margin: 20px 0;
+    align-items: center;
+  }
+  ion-item ion-label {
+    color: #A6A6A6;
+  }
+  ion-item ion-icon {
+    color: #c6cbd4;
+  }
+  ion-button {
+    --background: rgb(255, 68, 0);
+    height: 45px;
+    text-transform: capitalize;
+  }
+  .login-button{
+    font-weight: bold;
+    font-size: 16px;
+    margin: 60px 0 10px 0;
+  }
+  .forgot-button, .inscrire-button{
+    --background: rgb(255, 255, 255);
+    color: #818181 ;
+    font-size: 14px;
+    margin: 10px ;
+  }
+  .inscrire-button{
+    color: #f15704 ;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+.sign-up {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  color: #818181 ;
+}

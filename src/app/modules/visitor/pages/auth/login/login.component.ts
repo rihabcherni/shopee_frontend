@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilService } from '../../../../services/util.service';
+import { UtilService } from '../../../../../services/util.service';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -16,8 +16,10 @@ export class LoginComponent  implements OnInit {
   ) { }
   ngOnInit() {}
   login() {
-    this.util.setMenuState(true);
-    this.navCtrl.navigateRoot('', { animationDirection: 'back' });
+    this.router.navigateByUrl('/home');
+  }
+  goBackToLatestPage() {
+    this.navCtrl.back();
   }
 
   openInscrire(){
