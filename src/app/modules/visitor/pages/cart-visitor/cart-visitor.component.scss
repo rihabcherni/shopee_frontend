@@ -1,0 +1,123 @@
+  ion-header{
+    background: linear-gradient(180deg, #f9b47c 0%, var(--ion-color-primary) 100%);
+    border-radius: 0px 0px 35px 35px;
+    display: block;
+    padding: 0 20px;
+    color: var(--ion-color-light);
+    position: relative;
+    -ms-flex-order: -1;
+    order: -1;
+    width: 100%;
+    z-index: 10;
+    margin-bottom: 10px;
+    ion-row{
+      align-items: center;
+    }
+    ion-img{
+      width: 100px;
+    }
+    h1{
+      font-size: 25px !important;
+      font-weight: bold !important;
+    }
+    ion-icon{
+      cursor: pointer;
+    }
+  }
+  .rating{
+    align-items: center;
+    margin: -30px 0 0;
+    .color-text{
+      color: var(--ion-color-secondary);
+      font-weight: bold;
+    }
+  }
+  .price{
+    text-decoration: line-through;
+    font-size: 14px;
+  }
+  .brand{
+    font-size: 16px;
+    color: var(--ion-color-secondary);
+    font-weight: 600;
+  }
+  .new-price{
+    font-size: 16px;
+    color: var(--ion-color-primary);
+    font-weight: bold;
+  }
+  .price-container{
+    height: 60px;
+    align-items: center;
+  }
+  .product-panier{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--ion-color-dark);
+    font-size: 14px;
+    margin: 20px 0;
+    ion-button{
+      --border-radius: 60px;
+      --font-size: 18px;
+      font-weight: bold;
+    }
+    .cart-button-green{
+      margin-left: 3px;
+    }
+    .cart-button-red{
+      margin-right: 3px !important;
+    }
+  }
+  .left-panier{
+    text-align: center;
+  }
+  ion-thumbnail{
+    --size: 30%;
+    ion-img{
+      border-radius: 20px;
+    }
+  }
+
+  ion-footer{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--ion-color-tertiary-contrast);
+    padding: 0px 20px;
+    .total{
+      color: var(--ion-color-primary);
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .total-price{
+      display: flex;
+      align-items: center;
+      .price{
+        margin-right: 20px;
+      }
+    }
+  }
+  .favorite{
+    background-color: var(--ion-color-primary);
+    border-radius: 50%;
+    text-align: center;
+    padding: 6px;
+    position: absolute;
+    top: 0px;
+    cursor: pointer;
+  }
+
+  .favorite:active{
+    background-color: var(--ion-color-danger-shade);
+  }
+
+  .discount{
+    background-color: var(--ion-color-primary);
+    border-radius: 45%;
+    padding: 5px 10px;
+    color: var(--ion-color-light) !important;
+    font-weight: bold;
+    text-align: center;
+    vertical-align:middle;
+  }

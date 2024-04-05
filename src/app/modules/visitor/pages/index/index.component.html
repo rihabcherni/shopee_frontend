@@ -29,7 +29,7 @@
         </ion-segment-button>
       </ion-segment>
     </ion-col>
-    <ion-col size="1">
+    <ion-col size="1" (click)="openCategory()" style="cursor: pointer;">
       <ion-img style="max-width: 40px;" src="assets/icon/category.jpg"></ion-img>
     </ion-col>
   </ion-row>
@@ -52,41 +52,39 @@
                   <ion-card-header class="product-image" [ngStyle]="{ 'background-image': 'url(' + product.image + ')' }">
                     <ion-row>
                       <ion-col size="3">
-                        <p class="discount">{{ formatDiscount(product.discount) }}%</p>
+                        <p class="discount" *ngIf="product.discount !== '0.00'" >{{ formatDiscount(product.discount) }}%</p>
                       </ion-col>
                       <ion-col size="6" class="show-more">
                         <ion-icon name="eye-outline" size="large" class="eye-icon" (click)="openProductDetails(product.id)"></ion-icon>
                       </ion-col>
-                      <ion-col size="3" class="favorite">
-                        <ion-icon size="large" color="light" name="heart-sharp" (click)="addToFavorites()"></ion-icon>
-                      </ion-col>
                     </ion-row>
                   </ion-card-header>
-
                   <ion-card-content>
+                    <ion-icon class="favorite" size="large" color="light" name="heart-sharp" (click)="toggleFavorite(product)"></ion-icon>
                     <ion-card-title>{{ product.name }}</ion-card-title>
-                    <ion-card-subtitle>{{ product.brand }}</ion-card-subtitle>
+                    <ion-card-subtitle class="brand">{{ product.brand }}</ion-card-subtitle>
                     <ion-grid>
-                      <ion-row>
-                        <ion-col size="9">
-                          <p class="price">${{ product.price }}</p>
+                      <ion-row class="price-container">
+                        <ion-col size="9" *ngIf="product.discount !== '0.00'">
                           <p class="new-price">${{ product.price - (product.price * product.discount / 100) }}</p>
+                          <p class="price">${{ product.price }}</p>
+                        </ion-col>
+                        <ion-col size="9" *ngIf="product.discount === '0.00'">
+                          <p class="new-price">${{ product.price }}</p>
                         </ion-col>
                         <ion-col size="3">
                           <ion-badge class="rating">
                             <ion-icon name="star" size="small"></ion-icon>
-                            <span class="rating-value">{{ product.total_reviews > 0 ? product.total_ratings / product.total_reviews : 0 }}</span>
+                            <span class="rating-value">{{ product.total_reviews > 0 ? (product.total_ratings / product.total_reviews % 1 !== 0 ? (product.total_ratings / product.total_reviews).toFixed(2) : (product.total_ratings / product.total_reviews)) : 0 }}</span>
                           </ion-badge>
                         </ion-col>
                       </ion-row>
                     </ion-grid>
-                    <!-- Display the Add button when quantity is 0 -->
                     <ion-button *ngIf="product.quantity === 0" expand="block" class="cart-button" (click)="toggleItem(product)">
                       Add
                       <ion-icon class="spaced-icon" slot="end" size="large" icon="cart"></ion-icon>
                     </ion-button>
 
-                    <!-- Display the increment/decrement buttons when quantity is greater than 0 -->
                     <ion-row *ngIf="product.quantity > 0" class="product-panier">
                       <ion-button color="danger" expand="block" class="cart-button-red" (click)="decrementItem(product)">-</ion-button>
                       {{ product.quantity }}

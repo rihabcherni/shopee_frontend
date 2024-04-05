@@ -15,6 +15,8 @@ import { ProfilVisitorComponent } from './pages/auth/profil-visitor/profil-visit
 import { CartVisitorComponent } from './pages/cart-visitor/cart-visitor.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { SubcategoriesComponent } from './pages/subcategories/subcategories.component';
+import { SubcategoriesProductsComponent } from './pages/subcategories-products/subcategories-products.component';
+import { FavoriteComponent } from './pages/favorite/favorite.component';
 
 const routes: Routes = [
   {
@@ -26,8 +28,10 @@ const routes: Routes = [
       { path: 'home', component: IndexComponent },
       { path: 'product-details/:id', component: ProductDetailsComponent },
       { path: 'cart', component: CartVisitorComponent },
-      { path: 'categories', component: CategoriesComponent },
-      { path: 'category/:id/subcategories', component: SubcategoriesComponent },
+      { path: 'favorite', component: FavoriteComponent },
+      { path: 'store/categories', component: CategoriesComponent },
+      { path: 'store/category/:id/subcategories', component: SubcategoriesComponent },
+      { path: 'store/category/:category/subcategories/:subcategory/products', component: SubcategoriesProductsComponent },
 
       { path: 'profil-visiteur', component: ProfilVisitorComponent },
 

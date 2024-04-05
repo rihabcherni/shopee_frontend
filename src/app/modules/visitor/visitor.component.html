@@ -8,17 +8,23 @@
       <ion-icon name="home"></ion-icon>
       Home
     </ion-tab-button>
-    <ion-tab-button tab="categories">
-      <ion-icon name="list-sharp"></ion-icon>
-      Categories
+    <ion-tab-button tab="store/categories">
+      <ion-icon name="storefront-sharp"></ion-icon>
+        Store
+    </ion-tab-button>
+    <ion-tab-button tab="favorite">
+      <ion-icon name="heart"></ion-icon>
+      <ion-badge>{{ favoriteItemCount }}</ion-badge>
+      Favorite
+    </ion-tab-button>
+    <ion-tab-button tab="cart" >
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge>{{ cartItemCount }}</ion-badge>
+      Cart
     </ion-tab-button>
     <ion-tab-button tab="profil-visiteur">
       <ion-icon name="person-sharp"></ion-icon>
       Profil
-    </ion-tab-button>
-    <ion-tab-button tab="cart">
-      <ion-icon name="cart"></ion-icon>
-      Cart
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

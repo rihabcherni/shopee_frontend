@@ -1,5 +1,6 @@
 import { Component, ViewChildren, QueryList } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, NavController } from '@ionic/angular';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -9,8 +10,10 @@ export class OtpComponent  {
   otpDigits: string[] = ['', '', '', ''];
   otpDigitInputs: string[] = ['', '', '', ''];
 
-  constructor(private alertController: AlertController) {}
-
+  constructor(
+    private alertController: AlertController,
+    private navCtrl: NavController,
+    private router: Router) { }
   async verifyOTP() {
     const enteredOTP = this.otpDigitInputs.join('');
     const expectedOTP = '1234';
@@ -31,5 +34,7 @@ export class OtpComponent  {
       await alert.present();
     }
   }
-
+  goBackToLatestPage() {
+    this.navCtrl.back();
+  }
 }

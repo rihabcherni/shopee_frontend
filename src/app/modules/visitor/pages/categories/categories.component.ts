@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Category } from 'src/app/models/Category';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 
@@ -11,14 +12,18 @@ import { CategoriesService } from 'src/app/services/categories/categories.servic
 export class CategoriesComponent implements OnInit {
   categories: Category[] = [];
 
-  constructor(private categoryService: CategoriesService, private router: Router) { }
+  constructor(private navCtrl: NavController,private categoryService: CategoriesService, private router: Router) { }
 
   goToSubcategories(categoryId: number): void {
-    this.router.navigate([`/category/${categoryId}/subcategories`]);
+    this.router.navigate([`/store/category/${categoryId}/subcategories`]);
   }
   ngOnInit() {
     this.categoryService.getCategories().subscribe(categories => {
       this.categories = categories;
     });
   }
+  goBackToLatestPage() {
+    this.navCtrl.back();
+  }
+
 }

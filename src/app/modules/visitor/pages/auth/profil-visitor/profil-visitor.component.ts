@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profil-visitor',
@@ -7,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilVisitorComponent  implements OnInit {
 
-  constructor() { }
-
+  constructor(
+    private navCtrl: NavController,
+    private router: Router
+  ) { }
   ngOnInit() {}
-
+  goBackToLatestPage() {
+    this.navCtrl.back();
+  }
+  openLogin() {
+    this.router.navigateByUrl('/welcome');
+  }
 }

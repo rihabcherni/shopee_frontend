@@ -57,7 +57,7 @@
   }
   .alert-button.sc-ion-alert-md {
     background-color: rgb(228, 95, 0);
-    color: white !important;
+    color: var(--ion-color-light) !important;
     font-weight: bold;
     width: 120px;
     border-radius: 10px;
@@ -105,7 +105,7 @@
   }
   .alert-button.sc-ion-alert-md {
     background-color: rgb(41, 189, 0);
-    color: white !important;
+    color: var(--ion-color-light) !important;
     font-weight: bold;
     width: 120px;
     border-radius: 10px;
@@ -132,7 +132,7 @@
   }
   .alert-button.sc-ion-alert-md {
     background-color: rgb(228, 1, 1);
-    color: white !important;
+    color: var(--ion-color-light) !important;
     font-weight: bold;
     width: 120px;
     border-radius: 10px;

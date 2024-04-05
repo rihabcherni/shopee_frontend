@@ -17,6 +17,9 @@ import { ProfilVisitorComponent } from './pages/auth/profil-visitor/profil-visit
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { SubcategoriesComponent } from './pages/subcategories/subcategories.component';
 import { CartVisitorComponent } from './pages/cart-visitor/cart-visitor.component';
+import { SubcategoriesProductsComponent } from './pages/subcategories-products/subcategories-products.component';
+import { FavoriteComponent } from './pages/favorite/favorite.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { CartVisitorComponent } from './pages/cart-visitor/cart-visitor.componen
     ProfilVisitorComponent,
     CategoriesComponent,
     SubcategoriesComponent,
-    CartVisitorComponent
+    CartVisitorComponent,
+    SubcategoriesProductsComponent,
+    FavoriteComponent,StarRatingComponent
   ]
   ,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,0 +1,69 @@
+<ion-header *ngIf="subcategoriesProducts" style="background-image: url('{{ subcategoriesProducts.image }}');">
+  <ion-row>
+    <ion-col size="1.5"  (click)="goBackToLatestPage()" style="cursor: pointer;">
+      <ion-icon size="large" name="chevron-back-outline"></ion-icon>
+    </ion-col>
+    <ion-col size="10.5" class="title">
+      <ion-title class="strokeme">{{ subcategoriesProducts.name }}</ion-title>
+      <p class="strokeme2">{{ subcategoriesProducts.description }}</p>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content *ngIf="subcategoriesProducts">
+  <ion-grid>
+    <ion-row *ngFor="let row of chunk(subcategoriesProducts.products,2)">
+      <ng-container *ngFor="let product of row">
+        <ion-col size-lg="6" size-md="6" size="12">
+          <ion-item lines="full">
+            <ion-thumbnail slot="start">
+              <ion-img [src]="product.image"></ion-img>
+              <ion-badge class="discount">
+                <p *ngIf="product.discount !== '0.00'" >{{ formatDiscount(product.discount) }}%</p>
+              </ion-badge>
+            </ion-thumbnail>
+            <ion-label>
+              <ion-row>
+                <ion-col size="9.5">
+                  <h2>{{ product.name }}</h2>
+                  <p class="brand">{{ product.brand }}</p>
+                  <ion-row class="price-container"  *ngIf="product.discount !== '0.00'">
+                    <ion-col size="5">
+                      <p class="new-price">${{ product.price - (product.price * product.discount / 100) }}</p>
+                    </ion-col>
+                    <ion-col>
+                      <p class="price">${{ product.price }}</p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="price-container"  *ngIf="product.discount === '0.00'">
+                    <ion-col>
+                      <p class="new-price">${{ product.price }}</p>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="1.5" class="right-favorite">
+                  <ion-icon size="large" class="favorite" color="light" name="heart-sharp"></ion-icon>
+              </ion-col>
+              </ion-row>
+              <ion-row class="rating">
+                <ion-col size="5.5">
+                  <app-star-rating [rating]="product.total_reviews > 0 ?
+                    +(product.total_ratings / product.total_reviews % 1 !== 0 ?
+                    (product.total_ratings / product.total_reviews).toFixed(2) :
+                    (product.total_ratings / product.total_reviews)) : 0">
+                  </app-star-rating>
+                </ion-col>
+                <ion-col size="0.5" class="color-text">
+                  <h1>|</h1>
+                </ion-col>
+                <ion-col size="3.5" class="color-text">
+                  <p>({{ product.total_reviews }} client)</p>
+                </ion-col>
+              </ion-row>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+</ion-content>

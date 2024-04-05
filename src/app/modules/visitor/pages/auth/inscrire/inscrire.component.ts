@@ -14,8 +14,7 @@ export class InscrireComponent  implements OnInit {
   confirmPassword: string = '';
 
   constructor(private navCtrl: NavController) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit() {
   }
 
   register() {
@@ -25,4 +24,9 @@ export class InscrireComponent  implements OnInit {
     }
     this.navCtrl.navigateForward('/home');
   }
+
+  goBackToLatestPage() {
+    this.navCtrl.back();
+  }
+
 }

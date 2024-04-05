@@ -22,7 +22,7 @@ export class LoginComponent  implements OnInit {
     this.navCtrl.back();
   }
 
-  openInscrire(){
+  openInscrirePage(){
     this.router.navigateByUrl('/inscrire');
   }
   openForgot(){

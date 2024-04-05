@@ -4,6 +4,9 @@ import { NavController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import Swiper from 'swiper';
 import { interval } from 'rxjs';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { FavoriteService } from 'src/app/services/favorite/favorite.service';
+import { Product } from 'src/app/models/Product';
 
 @Component({
   selector: 'app-index',
@@ -12,37 +15,6 @@ import { interval } from 'rxjs';
 })
 export class IndexComponent implements OnInit {
   randomOffer: any;
-  offers = [
-    { id: 1, name: '20% off on all electronics', discount: 20 },
-    { id: 2, name: 'Buy one, get one free on selected items', discount: 50},
-    { id: 3, name: 'Free shipping on orders over $50', discount: 100},
-    { id: 4, name: 'Bundle deal: Save 20% on a laptop and keyboard', discount: 20},
-    { id: 5, name: 'Flash sale: 30% off on all clothing items', discount: 30 },
-    { id: 6, name: 'Exclusive 10% off for Gold members', discount: 10 },
-    { id: 7, name: 'Use code SPRING2 to get 5% off your next order', discount: 5 }
-  ];
-
-  toggleItem(product: any) {
-    if (product.quantity === 0) {
-      product.quantity = 1;
-    }
-  }
-  incrementItem(product: any) {
-    product.quantity = (product.quantity || 0) + 1;
-  }
-
-  decrementItem(product: any) {
-    if (product.quantity && product.quantity > 0) {
-      product.quantity--;
-    }
-    console.log(product.quantity)
-  }
-
-
-
-  addToFavorites() {
-  }
-
   @ViewChild('swiper')
   swiperRef: ElementRef | undefined;
   swiper?: Swiper;
@@ -58,16 +30,105 @@ export class IndexComponent implements OnInit {
   constructor(
     private navCtrl: NavController,
     private router: Router,
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private cartService: CartService,
+    private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
     this.fetchCategories();
     this.getRandomOffer();
-    interval(5000)
-    .subscribe(() => {
+    interval(5000).subscribe(() => {
       this.getRandomOffer();
     });
+    if (!localStorage.getItem('cartItems')) {
+      localStorage.setItem('cartItems', '[]');
+    }
+    if (!localStorage.getItem('favoriteItems')) {
+      localStorage.setItem('favoriteItems', '[]');
+    }
+  }
+
+  offers = [
+    { id: 1, name: '20% off on all electronics', discount: 20 },
+    { id: 2, name: 'Buy one, get one free on selected items', discount: 50},
+    { id: 3, name: 'Free shipping on orders over $50', discount: 100},
+    { id: 4, name: 'Bundle deal: Save 20% on a laptop and keyboard', discount: 20},
+    { id: 5, name: 'Flash sale: 30% off on all clothing items', discount: 30 },
+    { id: 6, name: 'Exclusive 10% off for Gold members', discount: 10 },
+    { id: 7, name: 'Use code SPRING2 to get 5% off your next order', discount: 5 }
+  ];
+
+  toggleItem(product: any) {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const existingItemIndex = cartItems.findIndex((item: any) => item.id === product.id);
+    if (existingItemIndex !== -1) {
+      product.quantity = cartItems[existingItemIndex].quantity;
+    } else {
+      product.quantity = 1;
+    }
+    this.addToCart(product);
+  }
+  addToCart(product: any) {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const existingItemIndex = cartItems.findIndex((item: any) => item.id === product.id);
+    if (existingItemIndex !== -1) {
+      cartItems[existingItemIndex].quantity += 1;
+    } else {
+      cartItems.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        rating:  product.total_reviews > 0 ?
+          (product.total_ratings / product.total_reviews % 1 !== 0 ?
+            (product.total_ratings / product.total_reviews).toFixed(2) :
+            (product.total_ratings / product.total_reviews)) :
+            0 ,
+        discount: product.discount,
+        total_reviews: product.total_reviews,
+        image: product.image,
+        brand: product.brand,
+        quantity: 1 });
+    }
+    const updatedCartItems = cartItems.filter((item: { quantity: number; }) => item.quantity !== 0);
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    this.updateBadgeCount();
+  }
+  updateBadgeCount() {
+    const totalQuantity = this.cartService.calculateTotalQuantity();
+    this.cartService.updateCartItemCount(totalQuantity);
+  }
+  incrementItem(product: any) {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const existingItemIndex = cartItems.findIndex((item: any) => item.id === product.id);
+
+    if (existingItemIndex !== -1) {
+      cartItems[existingItemIndex].quantity += 1;
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+    product.quantity=cartItems[existingItemIndex].quantity;
+    this.updateBadgeCount();
+  }
+  decrementItem(product: any) {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const existingItemIndex = cartItems.findIndex((item: any) => item.id === product.id);
+    if (existingItemIndex !== -1 && cartItems[existingItemIndex].quantity > 0) {
+      cartItems[existingItemIndex].quantity -= 1;
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+    product.quantity=cartItems[existingItemIndex].quantity;
+    this.updateBadgeCount();
+  }
+  updateFavoriteBadgeCount() {
+    const totalQuantity = this.favoriteService.calculateTotalQuantity();
+    this.favoriteService.updateFavoriteItemCount(totalQuantity);
+  }
+  toggleFavorite(product: Product): void {
+      if (this.favoriteService.isInFavorites(product)) {
+        this.favoriteService.removeFromFavorites(product);
+      } else {
+        this.favoriteService.addToFavorites(product);
+      }
+      this.updateFavoriteBadgeCount();
   }
 
   getRandomOffer(): void {
@@ -132,7 +193,6 @@ export class IndexComponent implements OnInit {
           ...product,
           quantity: 0
         }));
-        console.log(products);
       });
     } else {
       if(subcategoryName==='All'){
@@ -191,6 +251,9 @@ formatDiscount(discount: any): string {
 
   openProductDetails(productId: number) {
     this.router.navigate(['/product-details', productId]);
+  }
+  openCategory() {
+    this.router.navigate(['/store/categories']);
   }
 }
 

@@ -1,9 +1,9 @@
 ion-header{
-  background: linear-gradient(180deg, #f9b47c 0%, rgb(255, 68, 0) 100%);
+  background: linear-gradient(180deg, #f9b47c 0%, var(--ion-color-primary) 100%);
   border-radius: 0px 0px 30px 30px;
   display: block;
   padding: 10px 20px;
-  color: white;
+  color: var(--ion-color-light);
   position: relative;
   -ms-flex-order: -1;
   order: -1;
@@ -37,7 +37,7 @@ ion-header{
     color: #c6cbd4;
   }
   ion-button {
-    --background: rgb(255, 68, 0);
+    --background: var(--ion-color-primary);
     height: 45px;
     text-transform: capitalize;
   }
@@ -46,14 +46,13 @@ ion-header{
     font-size: 16px;
     margin: 60px 0 10px 0;
   }
-  .forgot-button, .inscrire-button{
-    --background: rgb(255, 255, 255);
-    color: #818181 ;
-    font-size: 14px;
-    margin: 10px ;
+  ion-button.remove-bg{
+    --background: transparent;
+    --box-shadow: none;
+    color: var(--ion-color-medium);
   }
   .inscrire-button{
-    color: #f15704 ;
+    color: #f15704 !important;
     font-weight: bold;
     text-decoration: underline;
   }

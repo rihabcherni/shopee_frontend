@@ -12,15 +12,27 @@ ion-header{
   background-size: cover;
   align-items: center;
   margin: 0 0 20px;
- }
- .strokeme{
-  color: white;
+  ion-row{
+    align-items: center;
+  }
+  ion-icon{
+    background-color: var(--ion-color-light);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px 10px 5px 5px;
+    &:hover {
+      background-color: lighten(rgb(210, 210, 210), 10%);
+    }
+  }
+}
+.strokeme{
+  color: var(--ion-color-light);
   padding: 3px 8px;
   font-size: 30px;
   text-shadow: -1px -1px 0 #e05403, 1px -1px 0 #e05403, -1px 1px 0 #e05403, 1px 1px 0 #e05403;
 }
 .strokeme2{
-  color: white;
+  color: var(--ion-color-light);
   padding: 3px 8px;
   text-shadow: -1px -1px 0 #2e1a0e, 1px -1px 0 #e05403, -1px 1px 0 #e05403, 1px 1px 0 #e05403;
 }
@@ -28,13 +40,13 @@ ion-card-header{
   border-radius: 0px 0px 30px 30px;
   display: block;
   padding: 10px 20px;
-  color: white;
+  color: var(--ion-color-light);
   position: relative;
   -ms-flex-order: -1;
   order: -1;
   width: 100%;
   z-index: 10;
-  min-height: 200px;
+  min-height: 140px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -46,5 +58,9 @@ ion-card-header{
   align-items: center;
   font-size: 18px;
   font-weight: bold;
-  
+
+}
+
+ion-content ion-col{
+  cursor: pointer;
 }
