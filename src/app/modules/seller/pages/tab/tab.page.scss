@@ -1,0 +1,22 @@
+ion-tabs {
+    position: fixed;
+  ion-tab-button {
+    ion-icon {
+      color: #000; // Set default color
+    }
+    
+    ion-label {
+      color: #000; // Set default color
+    }
+    
+    &:hover {
+      ion-icon {
+        color: orange; // Change icon color on hover
+      }
+      
+      ion-label {
+        color: orange; // Change label color on hover
+      }
+    }
+  }
+}

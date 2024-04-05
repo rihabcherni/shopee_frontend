@@ -1,0 +1,94 @@
+ion-content {
+    * {
+        font-family: lato;
+    }
+
+    .main-header {
+        height: 50vh;
+        width: 120%;
+        background: linear-gradient(90deg, rgb(211, 101, 8) 10%, rgb(255, 165, 0) 50%, rgb(255, 217, 120) 90%);
+        box-shadow: 0 1px 10px var(--ion-color-light);
+        border-radius: 0 0 50% 50%;
+        margin-left: -14vh;
+        margin-top: -60px;
+    
+        div {
+          transform: translateY(12vh);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+    
+          ion-avatar {
+            width: 20vh;
+            height: 20vh;
+            background-color: var(--ion-color-white);
+            margin-bottom: 10px;
+            border: 9px solid var(--ion-color-dark-orange);
+            border-radius: 50%;
+          }
+    
+          .user-info {
+            h2 {
+              font-size: 1.5rem;
+              margin-bottom: 5px;
+            }
+            p {
+              font-size: 1rem;
+              margin-bottom: 10px;
+            }
+          }
+        }
+    
+        ion-button {
+          margin-top: 10px;
+          background-color: white;
+          width: 150px;
+          border-radius: 20px;
+        }
+      }
+
+
+    ion-row {
+        margin-top: -60px;
+
+        ion-col {
+            ion-item {
+                width: 94%;
+                margin: auto;
+                border: 1px solid var(--ion-color-light);
+                box-shadow: 1px var(--ion-color-dark);
+                border-radius: 10px;
+
+                ion-label {
+                    font-size: 1.8rem;
+                    font-weight: bold;
+
+                    p {
+                        font-size: 0.7rem;
+                    }
+                }
+
+                ion-icon {
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+
+    ion-list {
+        ion-item {
+            margin-top: 1vh;
+            --border-radius: 20px;
+
+            ion-label {
+                font-size: 0.9rem;
+
+                p {
+                    margin-top: 5px;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

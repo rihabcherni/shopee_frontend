@@ -1,0 +1,96 @@
+ion-content {
+    .main-header {
+        height: 45vh;
+        width: 160%;
+        background: linear-gradient(90deg, rgb(211, 101, 8) 10%, rgb(255, 165, 0) 50%, rgb(255, 217, 120) 90%);
+        box-shadow: 0 1px 10px var(--ion-color-light);
+        border-radius: 0 0 50% 50%;
+        margin-left: -14vh;
+        margin-top: -60px;
+    }
+
+
+
+
+
+    ion-grid {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateY(10vh);
+        padding-bottom: 10vh;
+
+        ion-row {
+
+            ion-col {
+                ion-label {
+                    ion-note {
+                        font-size: 0.9rem;
+                    }
+
+                    ion-chip {
+                        ion-label {
+                            font-size: 1.4rem;
+                            font-weight: bold;
+                            letter-spacing: 0.5px;
+                            text-shadow: 1px 1px 1px black;
+                            --color: orange;
+                        }
+                    }
+
+                    b {
+                        font-size: 1.2rem;
+                    }
+                }
+
+
+            }
+
+            ion-button {
+                --background: rgb(187, 93, 0); // Orange color for background
+                font-size: 20px; // Larger font size
+                border-radius: 20px; // Rounded corners
+                font-weight: bold;
+                width: 200px;
+                height: 50px;
+                margin-bottom: 7vh;
+                align-items: center;
+                transform: translateX(160vh);
+
+
+
+            }
+        }
+        ion-list {
+            background: transparent;
+          
+            ion-item {
+              width: 95%;
+              margin: auto;
+              --border-radius: 20px;
+              margin-bottom: 7vh;
+              box-shadow: black;
+          
+              ion-label {
+                font-size: 1.2rem;
+              }
+          
+              /* CSS for hover effect on ion-input */
+              ion-input:hover {
+                border-color: orangered !important;
+                /* Example color for border change on hover */
+              }
+          
+              p {
+                font-size: 10rem;
+              }
+          
+              ion-text {
+                font-weight: 800;
+              }
+            }
+          }
+          
+    }
+}

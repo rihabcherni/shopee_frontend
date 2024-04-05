@@ -1,3 +1,43 @@
-<p>
-  profile works!
-</p>
+<ion-content [fullscreen]="true">
+  <ion-grid class="main-header">
+    <div align="center">
+      <ion-avatar>
+        <img src="https://th.bing.com/th/id/R.b6f68cc0add0b85c614d88383d234d54?rik=FqGw3PQI9rx4zQ&pid=ImgRaw&r=0" />
+      </ion-avatar>
+      <!-- Display user's name and email -->
+      <ion-label class="user-info">
+        <h2>{{ seller.name }}</h2>
+        <p>{{ seller.email }}</p>
+      </ion-label>
+      <!-- Edit button -->
+      <ion-button color="warning" fill="outline" (click)="editProfile()">Edit</ion-button>
+    </div>
+  </ion-grid>
+
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label>
+        <ion-text>Name</ion-text>
+        <p><ion-text color="dark">{{ seller.name }}</ion-text></p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text>Phone</ion-text>
+        <p><ion-text color="dark">{{ seller.phone }}</ion-text></p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text>Email</ion-text>
+        <p><ion-text color="dark">{{ seller.email }}</ion-text></p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-text>Address</ion-text>
+        <p><ion-text color="dark">{{ seller.address }}</ion-text></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

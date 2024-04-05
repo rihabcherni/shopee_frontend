@@ -1,25 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { SellerComponent } from './seller.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ProductDetailsComponent } from './pages/product-details/product-details.component';
-import { ProductListComponent } from './pages/product-list/product-list.component';
+import { FormsModule } from '@angular/forms';
+import { SellerRoutingModule } from './seller-routing.module';
+import { AddProductComponent } from './pages/add-product/add-product.component';
+import { EditProfileModalComponent } from './pages/edit-profile-modal/edit-profile-modal.component';
+import { ProductDetailsModalComponent } from './components/product-details-modal/product-details-modal.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-
+import { ProductListComponent } from './pages/product-list/product-list.component';
+import { SellerComponent } from './seller.component';
 
 @NgModule({
-  declarations: [
-    SellerComponent,
-    DashboardComponent,
-    ProductDetailsComponent,
-    ProductListComponent,
-    ProfileComponent
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [ProductListComponent,ProfileComponent,SellerComponent, ProductDetailsModalComponent, AddProductComponent, EditProfileModalComponent],
   imports: [
-    CommonModule, IonicModule
-  ]
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    SellerRoutingModule
+  ],
+  exports: [ProductListComponent,ProfileComponent,SellerComponent, ProductDetailsModalComponent, AddProductComponent, EditProfileModalComponent]
 })
 export class SellerModule { }

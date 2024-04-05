@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { DashboardComponent } from './dashboard.component';
+import { EditProfileModalComponent } from './edit-profile-modal.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('EditProfileModalComponent', () => {
+  let component: EditProfileModalComponent;
+  let fixture: ComponentFixture<EditProfileModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ],
+      declarations: [ EditProfileModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(EditProfileModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

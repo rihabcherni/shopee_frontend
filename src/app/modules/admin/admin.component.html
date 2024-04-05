@@ -1,10 +1,92 @@
-<ion-header>
-</ion-header>
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-avatar slot="start">
+        <img src="assets/logo1 .png" />
+      </ion-avatar>
+      <ion-title>
+        Be-Trendy
+      </ion-title>
 
-<ion-content>
+    </ion-toolbar>
+
+  </ion-header>
+  <ion-content class="ion-padding">
+    <div class="menu-header-bg"></div>
+      <div class="header-content">
+        <img src="assets/man.png">
+        <ion-label>
+          <h2>
+            Dr. First Name Last Name
+          </h2>
+          <p>admin&#64;gmail.com</p>
+        </ion-label>
+
+      </div>
+      <div class="action-button">
+        <ion-button>
+          <ion-icon slot="start" name="add">
+
+          </ion-icon>
+          Add (...)
+        </ion-button>
+      </div>
+
+     <ion-list lines="none" class="menu-items">
+      <ion-item href="/admin" [class.active]="isPageActive('/admin')">
+        <ion-icon name="home"></ion-icon>Home
+      </ion-item>
+      <ion-item href="/admin/sellers" [class.active]="isPageActive('/admin/sellers')">
+        <ion-icon name="people"></ion-icon>Sellers
+      </ion-item>
+
+
+      <ion-item>
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>Messages
+      </ion-item>
+      <ion-item>
+        <ion-icon name="heart-outline"></ion-icon>Reviews
+      </ion-item>
+      <ion-item href="/admin/profil" [class.active]="isPageActive('/admin/profil')">
+        <ion-icon name="person"></ion-icon>Profil
+      </ion-item>
+      <ion-item>
+        <ion-icon name="exit-outline"></ion-icon>Sign out
+      </ion-item>
+
+
+
+
+
+     </ion-list>
+
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+      <ion-avatar slot="end">
+        <img src="assets/logo1.png" />
+      </ion-avatar>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding" >
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
+  <ion-footer>
+
+  </ion-footer>
+</div>
+<!-- <ion-header>
+</ion-header> -->
+
+<!-- <ion-content>
   <ion-router-outlet></ion-router-outlet>
-</ion-content>
+</ion-content> -->
 
-<ion-footer>
 
-</ion-footer>
