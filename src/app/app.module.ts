@@ -10,7 +10,6 @@ import { VisitorModule } from './visitor/visitor.module';
 import { ClientModule } from './client/client.module';
 import { SellerModule } from './seller/seller.module';
 import { AdminModule } from './admin/admin.module';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,IonicModule.forRoot({
@@ -21,3 +20,4 @@ import { AdminModule } from './admin/admin.module';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+ 

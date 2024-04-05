@@ -1,3 +1,33 @@
-<p>
-  profile works!
-</p>
+
+ 
+<ion-content [fullscreen]="true" color="light">
+  <ion-grid class="main-header">
+    <div align="center">
+      <ion-avatar>
+        <img [src]="profileForm.value.image ? profileForm.value.image : 'assets/seller1.png'" (error)="setDefaultImage()">
+        <ion-icon name="add-circle" (click)="fileInput.click()" style="color:blue;margin-left: 75px;margin-top: -70px; width: 25px; height: 25px;"></ion-icon>
+        <input #fileInput type="file" (change)="onFileChange($event)" accept="image/*" style="display: none;">
+      </ion-avatar>
+    </div>
+    
+    <!-- <input type="file" (change)="onFileChange($event)" accept="image/*" > -->
+  </ion-grid>
+ 
+  <form   [formGroup]="profileForm" (ngSubmit)="updateProfile()"  >
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Phone Number</ion-label>
+        <ion-input formControlName="phoneNumber" type="tel"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" type="submit" style="width: 150px; margin-top:10px;text-align: center; margin-left: 150px;">Update</ion-button>
+  </form>
+</ion-content>

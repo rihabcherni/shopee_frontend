@@ -1,3 +1,4 @@
+import { MenuComponent } from './pages/menu/menu.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
@@ -13,8 +14,8 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'sellers', component: SellerListComponent },
-      { path: 'profil', component: ProfileComponent },
-      { path: 'sellers/:id', component: SellerDetailsComponent },
+      { path: 'profil', component: ProfileComponent }, 
+      { path: 'seller-details/:id', component: SellerDetailsComponent },
 
     ]
   }
