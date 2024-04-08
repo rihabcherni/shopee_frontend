@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,7 +15,16 @@ export class ForgotPasswordComponent  implements OnInit {
   constructor(
     private alertController: AlertController,
     private navCtrl: NavController,
-    private router: Router) { }
+    private router: Router,
+    private visitorHeaderService: VisitorHeaderService,) {
+        this.visitorHeaderService.pageTitle = 'Forgot Password';
+        this.visitorHeaderService.imageSource = 'assets/forgot.png';
+      }
+
+
+
+
+
   ngOnInit(): void {
   }
   async sendResetLink() {

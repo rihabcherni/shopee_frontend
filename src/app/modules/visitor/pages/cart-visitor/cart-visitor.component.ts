@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
 @Component({
   selector: 'app-cart-visitor',
@@ -9,7 +10,13 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class CartVisitorComponent  implements OnInit {
   cartItems: any[] = [];
-  constructor(private cartService: CartService, private navCtrl: NavController) {}
+  constructor(private cartService: CartService,
+    private navCtrl: NavController,
+    private visitorHeaderService: VisitorHeaderService,) {
+      this.visitorHeaderService.pageTitle = 'Shopping Cart';
+      this.visitorHeaderService.imageSource = 'assets/cart.png';
+    }
+
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
   }

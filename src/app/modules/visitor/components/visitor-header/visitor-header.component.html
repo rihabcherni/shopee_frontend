@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-row>
+    <ion-col size="2"  (click)="goBackToLatestPage()" style="cursor: pointer;">
+      <ion-icon size="large" name="chevron-back-outline"></ion-icon>
+    </ion-col>
+    <ion-col size="7" sizeLg="8">
+      <h1>{{ pageTitle }}</h1>
+      <p>{{ subpageTitle }}</p>
+    </ion-col>
+    <ion-col size="3" sizeLg="2">
+      <ion-img [src]="imageSource"></ion-img>
+    </ion-col>
+  </ion-row>
+</ion-header>
+

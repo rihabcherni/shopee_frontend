@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../../../../../services/util.service';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent  implements OnInit {
   constructor(
-    private util: UtilService,
     private navCtrl: NavController,
-    private router: Router
-  ) { }
+    private router: Router,
+    private visitorHeaderService: VisitorHeaderService,) {
+      this.visitorHeaderService.pageTitle = 'Welcome Back';
+      this.visitorHeaderService.subpageTitle = 'Login to continue';
+      this.visitorHeaderService.imageSource = 'assets/login.png';
+    }
   ngOnInit() {}
   login() {
     this.router.navigateByUrl('/home');

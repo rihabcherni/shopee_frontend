@@ -1,0 +1,23 @@
+ion-header{
+  background: linear-gradient(180deg, #f9b47c 0%, var(--ion-color-primary) 100%);
+  border-radius: 0px 0px 30px 30px;
+  display: block;
+  padding: 0 20px;
+  color: var(--ion-color-light);
+  position: relative;
+  -ms-flex-order: -1;
+  order: -1;
+  width: 100%;
+  z-index: 10;
+  ion-row{
+    align-items: center;
+  }
+  ion-img{
+    width: 100%;
+    max-width: 180px;
+  }
+  h1{
+    font-size: 22px !important;
+    font-weight: bold !important;
+  }
+ }

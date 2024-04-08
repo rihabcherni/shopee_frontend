@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
 @Component({
   selector: 'app-inscrire',
@@ -13,7 +14,14 @@ export class InscrireComponent  implements OnInit {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor(private navCtrl: NavController) {}
+  constructor(
+    private navCtrl: NavController,
+    private visitorHeaderService: VisitorHeaderService,) {
+      this.visitorHeaderService.pageTitle = 'Welcome';
+      this.visitorHeaderService.subpageTitle = 'Create your account';
+      this.visitorHeaderService.imageSource = 'assets/inscrire.png';
+    }
+
   ngOnInit() {
   }
 
@@ -24,7 +32,9 @@ export class InscrireComponent  implements OnInit {
     }
     this.navCtrl.navigateForward('/home');
   }
-
+  openLoginPage() {
+    this.navCtrl.navigateForward('/login');
+  }
   goBackToLatestPage() {
     this.navCtrl.back();
   }

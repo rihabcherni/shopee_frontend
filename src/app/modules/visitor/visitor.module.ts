@@ -20,6 +20,7 @@ import { CartVisitorComponent } from './pages/cart-visitor/cart-visitor.componen
 import { SubcategoriesProductsComponent } from './pages/subcategories-products/subcategories-products.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { VisitorHeaderComponent } from './components/visitor-header/visitor-header.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     SubcategoriesComponent,
     CartVisitorComponent,
     SubcategoriesProductsComponent,
-    FavoriteComponent,StarRatingComponent
+    FavoriteComponent,
+    StarRatingComponent,
+    VisitorHeaderComponent,
   ]
   ,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

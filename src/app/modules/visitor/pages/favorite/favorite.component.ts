@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Product } from 'src/app/models/Product';
 import { FavoriteService } from 'src/app/services/favorite/favorite.service';
+import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
 @Component({
   selector: 'app-favorite',
@@ -10,8 +11,12 @@ import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 })
 export class FavoriteComponent  implements OnInit {
   favoriteItems: Product[] =[];
-  constructor(private favoriteService: FavoriteService, private navCtrl: NavController) {}
-
+  constructor(private favoriteService: FavoriteService,
+    private navCtrl: NavController,
+    private visitorHeaderService: VisitorHeaderService,) {
+      this.visitorHeaderService.pageTitle = 'Wishlist';
+      this.visitorHeaderService.imageSource = 'assets/wishlist.png';
+    }
   ngOnInit(): void {
     this.favoriteItems = this.favoriteService.getFavorites();
     this.updateFavoriteBadgeCount();
