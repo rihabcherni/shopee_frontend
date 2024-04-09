@@ -7,7 +7,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { InscrireComponent } from './pages/auth/inscrire/inscrire.component';
 import { UpdatePasswordComponent } from './pages/auth/update-password/update-password.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
-import { WelcomeLoginComponent } from './pages/welcome-login/welcome-login.component';
+import { WelcomeLoginComponent } from './pages/auth/welcome-login/welcome-login.component';
 import { IndexComponent } from './pages/index/index.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { OtpComponent } from './pages/auth/otp/otp.component';

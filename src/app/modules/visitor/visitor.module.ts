@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { VisitorComponent } from './visitor.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
-import { WelcomeLoginComponent } from './pages/welcome-login/welcome-login.component';
+import { WelcomeLoginComponent } from './pages/auth/welcome-login/welcome-login.component';
 import { InscrireComponent } from './pages/auth/inscrire/inscrire.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { UpdatePasswordComponent } from './pages/auth/update-password/update-password.component';
