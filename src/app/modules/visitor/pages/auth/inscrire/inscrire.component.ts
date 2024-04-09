@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -69,9 +70,18 @@ export class InscrireComponent  implements OnInit {
 
           this.presentAlert('Registration successful.', response.message,'success-alert', 'assets/success-login.png');
         } catch (error) {
-          console.error('Registration failed:', error);
-          this.presentAlert('Error', 'Registration failed. Please try again later.', 'failed-alert', 'assets/success-login.png');
-        }
+          let emailError = '';
+          let passwordError = '';
+
+          if (error instanceof HttpErrorResponse && error.error) {
+            const errorData = error.error;
+            emailError = errorData.email ? errorData.email.join(', ') : '';
+            passwordError = errorData.password ? errorData.password.join(', ') : '';
+          }
+          this.presentAlert('Error', `Registration failed. Please try again later.
+          <p>Email: ${emailError}</p> <p>Password: ${passwordError}</p>
+          `, 'failed-alert', 'assets/error.png');
+         }
       }
     }
 
@@ -81,7 +91,7 @@ export class InscrireComponent  implements OnInit {
         cssClass,
         message: `
           <div>
-            <img src="${imageUrl}" style="max-width: 100%;">
+            <img src="${imageUrl}">
             <p>${message}</p>
           </div>
         `,

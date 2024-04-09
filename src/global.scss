@@ -154,6 +154,11 @@
 .success-alert, .failed-alert{
   .alert-wrapper{
     background-color: #FFD4D4;
+    min-width: 360px;
+    font-size: 11px;
+  }
+  img{
+    width: 80px;
   }
   .alert-title{
     font-size: 30px;

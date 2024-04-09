@@ -52,10 +52,10 @@ export class OtpComponent  {
           }
         },2000)
       } else {
-        this.presentAlert('OTP verification', 'Invalid OTP, user is already verified. Please try again.','failed-alert', 'assets/success-login.png');
+        this.presentAlert('OTP verification', 'Invalid OTP, user is already verified. Please try again.','failed-alert', 'assets/error.png');
       }
     } catch (error) {
-      this.presentAlert('Error', 'An error occurred while verifying OTP. Please try again later.','failed-alert', 'assets/success-login.png');
+      this.presentAlert('Error', 'An error occurred while verifying OTP. Please try again later.','failed-alert', 'assets/error.png');
     }
   }
   goBackToLatestPage() {
@@ -69,7 +69,7 @@ export class OtpComponent  {
       cssClass,
       message: `
         <div>
-          <img src="${imageUrl}" style="max-width: 100%;">
+          <img src="${imageUrl}">
           <p>${message}</p>
         </div>
       `,

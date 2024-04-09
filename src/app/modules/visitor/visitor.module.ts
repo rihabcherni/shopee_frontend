@@ -23,7 +23,7 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { VisitorHeaderComponent } from './components/visitor-header/visitor-header.component';
 import { SuccessAlertComponent } from './components/success-alert/success-alert.component';
 import { FailedAlertComponent } from './components/failed-alert/failed-alert.component';
-import { RoleTypeComponent } from './pages/role-type/role-type.component';
+import { RoleTypeComponent } from './pages/auth/role-type/role-type.component';
 
 @NgModule({
   declarations: [

@@ -17,7 +17,7 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { SubcategoriesComponent } from './pages/subcategories/subcategories.component';
 import { SubcategoriesProductsComponent } from './pages/subcategories-products/subcategories-products.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
-import { RoleTypeComponent } from './pages/role-type/role-type.component';
+import { RoleTypeComponent } from './pages/auth/role-type/role-type.component';
 
 const routes: Routes = [
   {

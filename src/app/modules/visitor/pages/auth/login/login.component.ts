@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
         this.presentAlert('Login successful.', 'Your account is ready to use. You will be redirected to the Home page in a few seconds.', 'success-alert','assets/success-login.png');
       } catch (error) {
         console.error('Login failed:', error);
-        this.presentAlert('Error', 'Login failed. Please check your credentials.', 'failed-alert','assets/success-login.png');
+        this.presentAlert('Error', 'Login failed. Please check your credentials.', 'failed-alert','assets/error.png');
       }
     }
   }
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
       cssClass,
       message: `
         <div>
-          <img src="${imageUrl}" style="max-width: 100%;">
+          <img src="${imageUrl}">
           <p>${message}</p>
         </div>
       `,
