@@ -11,6 +11,8 @@ import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-he
 export class OtpComponent  {
   otpDigits: string[] = ['', '', '', ''];
   otpDigitInputs: string[] = ['', '', '', ''];
+  activeInput: number | null = null;
+  email:string="";
   constructor(
     private alertController: AlertController,
     private authService: AuthService,
@@ -18,8 +20,15 @@ export class OtpComponent  {
     private router: Router) {
       this.visitorHeaderService.pageTitle = 'OTP Verification';
       this.visitorHeaderService.imageSource = 'assets/otp.png';
+      this.email = localStorage.getItem('email') ?? '';
     }
+  activateInput(index: number) {
+    this.activeInput = index;
+  }
 
+  isFormValid(): boolean {
+    return this.otpDigitInputs.every(digit => digit !== '');
+  }
   async verifyOTP() {
     const enteredOTP = this.otpDigitInputs.join('');
     try {
@@ -27,6 +36,7 @@ export class OtpComponent  {
       if (response && response.message === 'Account email verified successfully') {
         this.presentAlert('OTP verification successful!', response.message,'success-alert', 'assets/success-login.png');
         const userType =  localStorage.getItem('type_user');
+        setTimeout(()=>{
           switch (userType) {
             case 'admin':
               this.router.navigateByUrl('/admin');
@@ -40,6 +50,7 @@ export class OtpComponent  {
             default:
               break;
           }
+        },2000)
       } else {
         this.presentAlert('OTP verification', 'Invalid OTP, user is already verified. Please try again.','failed-alert', 'assets/success-login.png');
       }
@@ -62,9 +73,12 @@ export class OtpComponent  {
           <p>${message}</p>
         </div>
       `,
-      buttons: ['OK']
     });
 
     await alert.present();
+    setTimeout(() => {
+      alert.dismiss();
+    }, 3000);
   }
+
 }
