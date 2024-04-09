@@ -56,7 +56,7 @@ export class ForgotPasswordComponent  implements OnInit {
     this.navCtrl.back();
   }
   openInscrirePage(){
-    this.router.navigateByUrl('/inscrire');
+    this.router.navigateByUrl('/role-type');
   }
   openLogin(){
     this.router.navigateByUrl('/welcome');

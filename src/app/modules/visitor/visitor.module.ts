@@ -10,7 +10,7 @@ import { InscrireComponent } from './pages/auth/inscrire/inscrire.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { UpdatePasswordComponent } from './pages/auth/update-password/update-password.component';
 import { IndexComponent } from './pages/index/index.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { OtpComponent } from './pages/auth/otp/otp.component';
 import { ProfilVisitorComponent } from './pages/auth/profil-visitor/profil-visitor.component';
@@ -21,6 +21,9 @@ import { SubcategoriesProductsComponent } from './pages/subcategories-products/s
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { VisitorHeaderComponent } from './components/visitor-header/visitor-header.component';
+import { SuccessAlertComponent } from './components/success-alert/success-alert.component';
+import { FailedAlertComponent } from './components/failed-alert/failed-alert.component';
+import { RoleTypeComponent } from './pages/role-type/role-type.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { VisitorHeaderComponent } from './components/visitor-header/visitor-head
     WelcomeComponent,
     WelcomeLoginComponent,
     InscrireComponent,
+    RoleTypeComponent,
     ForgotPasswordComponent,
     UpdatePasswordComponent,
     IndexComponent,
@@ -41,10 +45,12 @@ import { VisitorHeaderComponent } from './components/visitor-header/visitor-head
     FavoriteComponent,
     StarRatingComponent,
     VisitorHeaderComponent,
+    SuccessAlertComponent,
+    FailedAlertComponent,
   ]
   ,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [CommonModule, IonicModule,FormsModule],
+  imports: [CommonModule, IonicModule,FormsModule, ReactiveFormsModule],
   exports: [VisitorComponent]
 })
 export class VisitorModule { }

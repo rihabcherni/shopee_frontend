@@ -123,7 +123,7 @@
     text-align: center
   }
 }
-.custom-modal-error{
+.custom-modal-error,.failed-alert{
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -148,5 +148,43 @@
   .alert-title{
     color: rgb(228, 1, 1);
     text-align: center;
+  }
+}
+
+.success-alert, .failed-alert{
+  .alert-wrapper{
+    background-color: #FFD4D4;
+  }
+  .alert-title{
+    font-size: 30px;
+    font-weight: bold;
+  }
+}
+.success-alert{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  .alert-button-group.sc-ion-alert-md {
+    justify-content: center !important;
+  }
+  .alert-button.sc-ion-alert-md {
+    background-color:  var(--ion-color-primary);
+    color: var(--ion-color-light) !important;
+    font-weight: bold;
+    width: 120px;
+    border-radius: 10px;
+    align-content: center;
+  }
+  .alert-button-inner.sc-ion-alert-md {
+    justify-content: center;
+  }
+  .alert-wrapper {
+    border-radius: 45px;
+    border: 4px solid var(--ion-color-primary);
+  }
+  .alert-title{
+    color: var(--ion-color-primary);
+    text-align: center;
+    font-size:25px !important;
   }
 }

@@ -1,0 +1,42 @@
+<app-visitor-header></app-visitor-header>
+
+<ion-content class="ion-padding">
+  <div class="role-container">
+    <p class="choose-role">Select user type:</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none" class="role-item"  [class.active]="type_user === 'client'"  (click)="selectRole('client')">
+            <ion-icon size="large" slot="end" name="checkmark-circle-outline" [color]="type_user === 'client' ? 'primary' : 'medium'"></ion-icon>
+            <div>
+              <img src="assets/client.png" alt="Client Icon" class="role-icon">
+              <ion-label>Client</ion-label>
+            </div>
+          </ion-item>
+
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none" class="role-item" [class.active]="type_user === 'seller'" (click)="selectRole('seller')">
+            <ion-icon size="large" slot="end" name="checkmark-circle-outline" [color]="type_user === 'seller' ? 'primary' : 'medium'"></ion-icon>
+            <div>
+              <img src="assets/salesman.png" alt="Seller Icon" class="role-icon">
+              <ion-label>Seller</ion-label>
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <p class="title-role">Welcome to Be-Trendy {{ type_user }}!</p>
+    <div *ngIf="type_user === 'seller'" class="msg-role">
+      <p>Start showcasing your products and reaching new customers today.</p>
+    </div>
+
+    <div *ngIf="type_user === 'client'" class="msg-role">
+      <p>Discover the latest trends and shop your style with ease.</p>
+    </div>
+
+
+    <ion-button expand="block" (click)="saveRoleChanged()">Save Role</ion-button>
+
+  </div>
+</ion-content>

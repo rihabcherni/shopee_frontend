@@ -17,6 +17,7 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { SubcategoriesComponent } from './pages/subcategories/subcategories.component';
 import { SubcategoriesProductsComponent } from './pages/subcategories-products/subcategories-products.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
+import { RoleTypeComponent } from './pages/role-type/role-type.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
 
       { path: 'login', component: LoginComponent },
       { path: 'inscrire', component: InscrireComponent },
+      { path: 'role-type', component: RoleTypeComponent },
       { path: 'otp', component: OtpComponent },
       { path: 'update-password', component: UpdatePasswordComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },

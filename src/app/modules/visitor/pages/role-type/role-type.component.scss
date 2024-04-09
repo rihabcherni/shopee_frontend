@@ -1,0 +1,44 @@
+.role-item{
+  cursor: pointer;
+  max-width: max-content;
+  img{
+    border-radius: 50%;
+    border: 8px solid var(--ion-color-medium);
+  }
+  ion-icon{
+    position:absolute;
+    right:0px;
+    top:0px;
+  }
+  ion-label{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--ion-color-medium);
+  }
+}
+
+.role-item.active {
+  img{
+    border-radius: 50%;
+    border: 8px solid var(--ion-color-primary);
+  }
+  ion-label{
+    text-align: center;
+    color: var(--ion-color-primary);
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.choose-role, .title-role, .msg-role{
+  font-size: 18px;
+  text-align: center;
+  color: var(--ion-color-medium);
+}
+.title-role{
+  font-size: 20px;
+  color: var(--ion-color-secondary);
+  font-weight: bold;
+  margin: 50px 0 -15px;
+}

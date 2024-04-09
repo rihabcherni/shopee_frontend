@@ -10,7 +10,7 @@ import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 })
 export class VisitorComponent  implements OnInit {
   isWelcomePage: boolean = false;
-  welcomePages: string[] = ['/','/welcome', '/login','/forgot-password','/otp','/update-password', '/inscrire'];
+  welcomePages: string[] = ['/','/welcome', '/login','/forgot-password','/otp','/update-password','/role-type', '/inscrire'];
   cartItemCount: number=0;
   favoriteItemCount: number=0;
   constructor(private router: Router,private cartService: CartService,private favoriteService: FavoriteService) {

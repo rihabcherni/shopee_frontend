@@ -1,0 +1,38 @@
+.form-container {
+  margin: 0 40px;
+  text-align: center;
+
+  ion-item {
+    --padding-start: 10px;
+    --border-color: #DADADA;
+    margin: 15px 0;
+    align-items: center;
+  }
+  ion-item ion-label {
+    color: #A6A6A6;
+  }
+  ion-item ion-icon {
+    color: #c6cbd4;
+  }
+  ion-button {
+    --background: var(--ion-color-primary);
+    height: 45px;
+    text-transform: capitalize;
+  }
+  .login-button{
+    font-weight: bold;
+    font-size: 16px;
+    margin: 60px 0 10px 0;
+  }
+  .forgot-button, .inscrire-button{
+    --background: var(--ion-color-light);
+    color: #818181 ;
+    font-size: 14px;
+    margin: 10px ;
+  }
+  .inscrire-button{
+    color: var(--ion-color-primary) ;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
