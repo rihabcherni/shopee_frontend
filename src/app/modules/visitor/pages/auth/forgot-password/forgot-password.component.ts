@@ -17,14 +17,10 @@ export class ForgotPasswordComponent  implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private visitorHeaderService: VisitorHeaderService,) {
-        this.visitorHeaderService.pageTitle = 'Forgot Password';
-        this.visitorHeaderService.imageSource = 'assets/forgot.png';
+      this.visitorHeaderService.pageTitle = 'Forgot Password';
+      this.visitorHeaderService.subpageTitle = '';
+      this.visitorHeaderService.imageSource = 'assets/forgot.png';
       }
-
-
-
-
-
   ngOnInit(): void {
   }
   async sendResetLink() {

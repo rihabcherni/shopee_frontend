@@ -14,9 +14,9 @@
     border: 3px solid var(--ion-color-primary) !important;
   }
   ion-button {
-    --background: var(--ion-color-primary);
     height: 45px;
     text-transform: capitalize;
+    --background: linear-gradient(120deg, #f9b47c 0%, var(--ion-color-primary) 100%);
   }
 }
 h1{

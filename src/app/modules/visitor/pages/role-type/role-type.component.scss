@@ -31,9 +31,8 @@
   }
 }
 
-.choose-role, .title-role, .msg-role{
-  font-size: 18px;
-  text-align: center;
+.msg-role{
+  font-size: 16px;
   color: var(--ion-color-medium);
 }
 .title-role{
@@ -41,4 +40,19 @@
   color: var(--ion-color-secondary);
   font-weight: bold;
   margin: 50px 0 -15px;
+  font-weight: bold;
+}
+.choose-role{
+  color: var(--ion-color-primary);
+  font-weight: bold;
+  font-size: 20px;
+}
+ion-button {
+  height: 45px;
+  text-transform: capitalize;
+  --background: linear-gradient(120deg, #f9b47c 0%, var(--ion-color-primary) 100%);
+}
+.role-container{
+  margin: 20px 40px;
+  text-align: center;
 }

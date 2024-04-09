@@ -4,27 +4,28 @@
   <div class="form-container">
     <form [formGroup]="registerForm" (ngSubmit)="register()">
       <ion-item fill="outline" color="warning">
-        <ion-label position="floating">First Name</ion-label>
+        <ion-label position="floating">FirstName</ion-label>
         <ion-input type="text" formControlName="first_name"></ion-input>
       </ion-item>
       <div *ngIf="registerForm.get('first_name')?.invalid && registerForm.get('first_name')?.touched">
-        <ion-text color="danger" stacked>First Name is required</ion-text>
+        <ion-text class="error" color="danger" stacked>First Name is required</ion-text>
       </div>
 
       <ion-item fill="outline" color="warning">
-        <ion-label position="floating">Last Name</ion-label>
+        <ion-label position="floating">LastName</ion-label>
         <ion-input type="text" formControlName="last_name"></ion-input>
       </ion-item>
       <div *ngIf="registerForm.get('last_name')?.invalid && registerForm.get('last_name')?.touched">
-        <ion-text color="danger" stacked>Last Name is required</ion-text>
+        <ion-text class="error"  color="danger" stacked>Last Name is required</ion-text>
       </div>
 
       <ion-item fill="outline" color="warning">
         <ion-label position="floating">Email</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
+
       <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-        <ion-text color="danger" stacked>Email is required and must be a valid email</ion-text>
+        <ion-text class="error" color="danger" stacked>Email is required and must be a valid email</ion-text>
       </div>
 
       <ion-item fill="outline" color="warning">
@@ -32,17 +33,17 @@
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
       <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-        <ion-text color="danger" stacked>Password is required</ion-text>
+        <ion-text class="error" color="danger" stacked>Password is required</ion-text>
       </div>
 
       <ion-item fill="outline" color="warning">
-        <ion-label position="floating">Confirm Password</ion-label>
-        <ion-input type="password" formControlName="confirmPassword"></ion-input>
+        <ion-label position="floating">Confirm-Password</ion-label>
+        <ion-input class="error" type="password" formControlName="confirmPassword"></ion-input>
       </ion-item>
       <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
-        <ion-text color="danger" stacked>Confirm Password is required</ion-text>
+        <ion-text class="error" color="danger" stacked>Confirm Password is required</ion-text>
       </div>
-      <ion-button expand="block" class="register-button" type="submit" [disabled]="registerForm.invalid">Register</ion-button>
+      <ion-button expand="block" shape="round" class="register-button" type="submit" [disabled]="registerForm.invalid">Register</ion-button>
     </form>
     <div class="sign-up">
       Already have an account?

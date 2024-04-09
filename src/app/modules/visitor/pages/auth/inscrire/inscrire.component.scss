@@ -1,7 +1,5 @@
 .form-container {
   margin: 0 40px;
-  text-align: center;
-
   ion-item {
     --padding-start: 10px;
     --border-color: #DADADA;
@@ -15,9 +13,9 @@
     color: #c6cbd4;
   }
   ion-button {
-    --background: var(--ion-color-primary);
     height: 45px;
     text-transform: capitalize;
+    --background: linear-gradient(120deg, #f9b47c 0%, var(--ion-color-primary) 100%);
   }
   .login-button{
     font-weight: bold;
@@ -41,4 +39,8 @@
   justify-content:center;
   align-items: center;
   color: #818181 ;
+}
+.error{
+  font-size: 10px !important;
+  padding: 0;
 }
