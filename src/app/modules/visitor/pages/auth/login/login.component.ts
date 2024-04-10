@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private visitorHeaderService: VisitorHeaderService,
-    private alertController: AlertController
   ) {
     this.visitorHeaderService.pageTitle = 'Welcome Back';
     this.visitorHeaderService.subpageTitle = 'Login to continue';
@@ -65,30 +64,13 @@ export class LoginComponent implements OnInit {
           default:
             break;
         }
-        this.presentAlert('Login successful.', 'Your account is ready to use. You will be redirected to the Home page in a few seconds.', 'success-alert','assets/success-login.png');
+        this.authService.presentAlert('Login successful.', 'Your account is ready to use. You will be redirected to the Home page in a few seconds.', 'success-alert','assets/success-login.png');
       } catch (error) {
         console.error('Login failed:', error);
-        this.presentAlert('Error', 'Login failed. Please check your credentials.', 'failed-alert','assets/error.png');
+        this.authService.presentAlert('Error', 'Login failed. Please check your credentials.', 'failed-alert','assets/error.png');
       }
     }
   }
-
-  async presentAlert(header: string, message: string, cssClass: string, imageUrl: string) {
-    const alert = await this.alertController.create({
-      header,
-      cssClass,
-      message: `
-        <div>
-          <img src="${imageUrl}">
-          <p>${message}</p>
-        </div>
-      `,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
   goBackToLatestPage() {
     this.navCtrl.back();
   }

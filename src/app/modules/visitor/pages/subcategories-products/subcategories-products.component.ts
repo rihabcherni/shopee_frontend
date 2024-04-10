@@ -22,8 +22,6 @@ export class SubcategoriesProductsComponent  implements OnInit {
       const categoryId = params['subcategory'];
       this.subCategoriesService.getSubcategories(categoryId).subscribe((category: Subcategory) => {
         this.subcategoriesProducts = category;
-        console.log(categoryId)
-        console.log(this.subcategoriesProducts)
       });
     });
   }

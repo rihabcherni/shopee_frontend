@@ -18,6 +18,7 @@ import { SubcategoriesComponent } from './pages/subcategories/subcategories.comp
 import { SubcategoriesProductsComponent } from './pages/subcategories-products/subcategories-products.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { RoleTypeComponent } from './pages/auth/role-type/role-type.component';
+import { RestPasswordModalComponent } from './pages/auth/rest-password-modal/rest-password-modal.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
       { path: 'otp', component: OtpComponent },
       { path: 'update-password', component: UpdatePasswordComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'reset-password/:uidb64/:token', component: RestPasswordModalComponent },
     ]
   }
 ];

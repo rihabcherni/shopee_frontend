@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
 @Component({
@@ -8,53 +9,51 @@ import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-he
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
 })
-export class ForgotPasswordComponent  implements OnInit {
+export class ForgotPasswordComponent implements OnInit {
 
   email: string = '';
 
   constructor(
-    private alertController: AlertController,
     private navCtrl: NavController,
     private router: Router,
-    private visitorHeaderService: VisitorHeaderService,) {
-      this.visitorHeaderService.pageTitle = 'Forgot Password';
-      this.visitorHeaderService.subpageTitle = '';
-      this.visitorHeaderService.imageSource = 'assets/forgot.png';
-      }
+    private visitorHeaderService: VisitorHeaderService,
+    private authService: AuthService
+  ) {
+    this.visitorHeaderService.pageTitle = 'Forgot Password';
+    this.visitorHeaderService.subpageTitle = '';
+    this.visitorHeaderService.imageSource = 'assets/forgot.png';
+  }
+
   ngOnInit(): void {
   }
   async sendResetLink() {
     if (this.validateEmail(this.email)) {
-      const alert = await this.alertController.create({
-        header: 'Success',
-        message: 'Reset link sent successfully to ' + this.email,
-        buttons: ['OK']
-      });
-      await alert.present();
-      setTimeout(() => {
-        this.router.navigateByUrl('/otp');
-      }, 3000);
-
+      try {
+        const response = await this.authService.sendResetLink(this.email).toPromise();
+        this.authService.presentAlert('Success', 'Reset link sent successfully to ' + this.email,'success-alert', 'assets/forgot.png');
+        this.router.navigateByUrl(`/reset-password/${response.uidb64}/${response.token}`);
+      } catch (error) {
+        this.authService.presentAlert('Error', 'Failed to send reset link. Please try again later.','failed-alert', 'assets/error.png');
+      }
     } else {
-      const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'Please enter a valid email',
-        buttons: ['OK']
-      });
-      await alert.present();
+      this.authService.presentAlert('Error', 'Please enter a valid email','failed-alert', 'assets/error.png');
     }
   }
+
   validateEmail(email: string): boolean {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return pattern.test(email);
   }
+
   goBackToLatestPage() {
     this.navCtrl.back();
   }
-  openInscrirePage(){
+
+  openInscrirePage() {
     this.router.navigateByUrl('/role-type');
   }
-  openLogin(){
+
+  openLogin() {
     this.router.navigateByUrl('/welcome');
   }
 }

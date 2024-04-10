@@ -14,7 +14,6 @@ export class OtpComponent  {
   activeInput: number | null = null;
   email:string="";
   constructor(
-    private alertController: AlertController,
     private authService: AuthService,
     private navCtrl: NavController,private visitorHeaderService: VisitorHeaderService,
     private router: Router) {
@@ -34,7 +33,7 @@ export class OtpComponent  {
     try {
       const response = await this.authService.verifyOTP(enteredOTP);
       if (response && response.message === 'Account email verified successfully') {
-        this.presentAlert('OTP verification successful!', response.message,'success-alert', 'assets/success-login.png');
+        this.authService.presentAlert('OTP verification successful!', response.message,'success-alert', 'assets/success-login.png');
         const userType =  localStorage.getItem('type_user');
         setTimeout(()=>{
           switch (userType) {
@@ -52,33 +51,13 @@ export class OtpComponent  {
           }
         },2000)
       } else {
-        this.presentAlert('OTP verification', 'Invalid OTP, user is already verified. Please try again.','failed-alert', 'assets/error.png');
+        this.authService.presentAlert('OTP verification', 'Invalid OTP, user is already verified. Please try again.','failed-alert', 'assets/error.png');
       }
     } catch (error) {
-      this.presentAlert('Error', 'An error occurred while verifying OTP. Please try again later.','failed-alert', 'assets/error.png');
+      this.authService.presentAlert('Error', 'An error occurred while verifying OTP. Please try again later.','failed-alert', 'assets/error.png');
     }
   }
   goBackToLatestPage() {
     this.navCtrl.back();
   }
-
-
-  async presentAlert(header: string, message: string, cssClass: string, imageUrl: string) {
-    const alert = await this.alertController.create({
-      header,
-      cssClass,
-      message: `
-        <div>
-          <img src="${imageUrl}">
-          <p>${message}</p>
-        </div>
-      `,
-    });
-
-    await alert.present();
-    setTimeout(() => {
-      alert.dismiss();
-    }, 3000);
-  }
-
 }

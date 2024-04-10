@@ -10,13 +10,17 @@ import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 })
 export class VisitorComponent  implements OnInit {
   isWelcomePage: boolean = false;
-  welcomePages: string[] = ['/','/welcome', '/login','/forgot-password','/otp','/update-password','/role-type', '/inscrire'];
+  welcomePages: string[] = ['/','/welcome', '/login','/forgot-password','/reset-password','/otp','/update-password','/role-type', '/inscrire'];
   cartItemCount: number=0;
   favoriteItemCount: number=0;
   constructor(private router: Router,private cartService: CartService,private favoriteService: FavoriteService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.isWelcomePage = this.welcomePages.includes(event.url);
+        if( this.isWelcomeRoute()){
+          this.isWelcomePage = this.isWelcomeRoute();
+        }else{
+          this.isWelcomePage = this.welcomePages.includes(event.url);
+        }
       }
     });
   }
@@ -38,5 +42,8 @@ export class VisitorComponent  implements OnInit {
   updateFavoriteBadgeCount() {
     const totalQuantity = this.favoriteService.calculateTotalQuantity();
     this.favoriteService.updateFavoriteItemCount(totalQuantity);
+  }
+  isWelcomeRoute(): boolean {
+    return this.router.url.includes('/reset-password');
   }
 }

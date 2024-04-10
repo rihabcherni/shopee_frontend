@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private alertController : AlertController) { }
   private apiUrl = 'http://127.0.0.1:8000/api/auth/';
 
   login(email: string, password: string) {
@@ -20,4 +21,32 @@ export class AuthService {
   verifyOTP(otp: string) {
     return this.http.post<any>(this.apiUrl+'verify-email/', { otp }).toPromise();
   }
+
+  sendResetLink(email: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'password-reset/', { email });
+  }
+
+  setNewPassword(data: any) {
+    return this.http.patch(this.apiUrl+'set-new-password/', data);
+  }
+
+
+  async presentAlert(header: string, message: string, cssClass: string, imageUrl: string) {
+    const alert = await this.alertController.create({
+      header,
+      cssClass,
+      message: `
+        <div>
+          <img src="${imageUrl}">
+          <p>${message}</p>
+        </div>
+      `,
+    });
+
+    await alert.present();
+    setTimeout(() => {
+      alert.dismiss();
+    }, 3000);
+  }
+
 }

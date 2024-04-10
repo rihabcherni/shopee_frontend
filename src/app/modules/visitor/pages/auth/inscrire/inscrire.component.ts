@@ -20,7 +20,6 @@ export class InscrireComponent  implements OnInit {
       private router: Router,
       private formBuilder: FormBuilder,
       private visitorHeaderService: VisitorHeaderService,
-      private alertController: AlertController
     ) {
       this.visitorHeaderService.pageTitle = 'Create Account';
       this.visitorHeaderService.subpageTitle = 'Register to continue';
@@ -55,7 +54,7 @@ export class InscrireComponent  implements OnInit {
         const confirmPassword = confirmPasswordControl.value;
 
         if (password !== confirmPassword) {
-          this.presentAlert('Error', 'Passwords do not match.', 'failed-alert', 'assets/error.png');
+          this.authService.presentAlert('Error', 'Passwords do not match.', 'failed-alert', 'assets/error.png');
           return;
         }
 
@@ -68,7 +67,7 @@ export class InscrireComponent  implements OnInit {
 
           this.router.navigateByUrl('/otp');
 
-          this.presentAlert('Registration successful.', response.message,'success-alert', 'assets/success-login.png');
+          this.authService.presentAlert('Registration successful.', response.message,'success-alert', 'assets/success-login.png');
         } catch (error) {
           let emailError = '';
           let passwordError = '';
@@ -78,29 +77,12 @@ export class InscrireComponent  implements OnInit {
             emailError = errorData.email ? errorData.email.join(', ') : '';
             passwordError = errorData.password ? errorData.password.join(', ') : '';
           }
-          this.presentAlert('Error', `Registration failed. Please try again later.
+          this.authService.presentAlert('Error', `Registration failed. Please try again later.
           <p>Email: ${emailError}</p> <p>Password: ${passwordError}</p>
           `, 'failed-alert', 'assets/error.png');
          }
       }
     }
-
-    async presentAlert(header: string, message: string, cssClass: string, imageUrl: string) {
-      const alert = await this.alertController.create({
-        header,
-        cssClass,
-        message: `
-          <div>
-            <img src="${imageUrl}">
-            <p>${message}</p>
-          </div>
-        `,
-        buttons: ['OK']
-      });
-
-      await alert.present();
-    }
-
   openLoginPage() {
     this.navCtrl.navigateForward('/login');
   }

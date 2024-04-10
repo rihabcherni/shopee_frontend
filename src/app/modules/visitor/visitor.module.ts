@@ -24,6 +24,7 @@ import { VisitorHeaderComponent } from './components/visitor-header/visitor-head
 import { SuccessAlertComponent } from './components/success-alert/success-alert.component';
 import { FailedAlertComponent } from './components/failed-alert/failed-alert.component';
 import { RoleTypeComponent } from './pages/auth/role-type/role-type.component';
+import { RestPasswordModalComponent } from './pages/auth/rest-password-modal/rest-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { RoleTypeComponent } from './pages/auth/role-type/role-type.component';
     RoleTypeComponent,
     ForgotPasswordComponent,
     UpdatePasswordComponent,
-    IndexComponent,
+    IndexComponent,RestPasswordModalComponent,
     OtpComponent,
     ProfilVisitorComponent,
     CategoriesComponent,
