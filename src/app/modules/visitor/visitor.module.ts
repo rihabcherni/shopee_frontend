@@ -25,6 +25,7 @@ import { SuccessAlertComponent } from './components/success-alert/success-alert.
 import { FailedAlertComponent } from './components/failed-alert/failed-alert.component';
 import { RoleTypeComponent } from './pages/auth/role-type/role-type.component';
 import { RestPasswordModalComponent } from './pages/auth/rest-password-modal/rest-password-modal.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { RestPasswordModalComponent } from './pages/auth/rest-password-modal/res
     SubcategoriesComponent,
     CartVisitorComponent,
     SubcategoriesProductsComponent,
+    ProductDetailsComponent,
     FavoriteComponent,
     StarRatingComponent,
     VisitorHeaderComponent,

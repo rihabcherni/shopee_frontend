@@ -1,3 +1,135 @@
-<p>
-  product-details works!
-</p>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Product Details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="product">
+  <ion-row>
+    <ion-col size="12" sizeSm="7" sizeLg="4">
+      <ion-row class="image-container">
+        <ion-col size="2" *ngIf="product.images && product.images.length > 0">
+          <div *ngFor="let image of product.images; let i = index" class="image-wrapper" [ngClass]="{'active': i === mainImageIndex}">
+            <img [src]="image.image" alt="Product Image" (click)="updateMainImage(i, image.image)">
+          </div>
+        </ion-col>
+        <ion-col size="10">
+          <div class="product-image">
+            <img *ngIf="mainImageUrl" [src]="mainImageUrl" alt="Product Image">
+            <img *ngIf="!mainImageUrl && product?.image" [src]="product.image" alt="Product Image">
+          </div>
+        </ion-col>
+        <ion-badge class="discount" *ngIf="product.discount !== '0.00'" >
+          <p>{{ formatDiscount(product.discount) }}%</p>
+        </ion-badge>
+      </ion-row>
+      <ion-button *ngIf="show" expand="block" class="cart-button" (click)="toggleItem(product)">
+        Add
+        <ion-icon class="spaced-icon" slot="end" size="large" icon="cart"></ion-icon>
+      </ion-button>
+
+      <ion-row *ngIf="!show" class="product-panier">
+        <ion-button color="danger" expand="block" class="cart-button-red" (click)="decrementItem(product)">-</ion-button>
+        {{ product.quantity }}
+        <ion-button color="success" expand="block" class="cart-button-green" (click)="incrementItem(product)">+</ion-button>
+      </ion-row>
+    </ion-col>
+
+    <ion-col size="12" sizeSm="5" sizeLg="8">
+      <div class="tabs">
+        <div class="tab" (click)="setActiveTab('product')" [class.active]="activeTab === 'product'">Product</div>
+        <div class="tab" (click)="setActiveTab('details')" [class.active]="activeTab === 'details'">Details</div>
+        <div class="tab" (click)="setActiveTab('reviews')" [class.active]="activeTab === 'reviews'">Reviews</div>
+      </div>
+
+      <div class="tab-content" [ngSwitch]="activeTab">
+        <div *ngSwitchCase="'product'">
+          <h2 class="name-product">{{ product.name }}</h2>
+          <p class="brand">{{ product.brand }}</p>
+          <ion-row class="price-container" *ngIf="product.discount !== '0.00'">
+            <ion-col size="5">
+              <p class="new-price">  ${{ calculateNewPrice(product.price, product.discount) }} </p>
+            </ion-col>
+            <ion-col>
+              <p class="price">${{ product.price }}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row class="price-container" *ngIf="product.discount === '0.00'">
+            <ion-col>
+              <p class="new-price">${{ product.price }}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row class="rating">
+            <ion-col size="5.5">
+              <app-star-rating [(rating)]="calculatedRating"></app-star-rating>
+            </ion-col>
+            <ion-col size="0.5" class="color-text">
+              <h1>|</h1>
+            </ion-col>
+            <ion-col size="3.5" class="color-text">
+              <p>({{ product.total_reviews }} client)</p>
+            </ion-col>
+          </ion-row>
+          <p><strong>Category:</strong> {{ product.category_name }}</p>
+          <p><strong>Subcategory:</strong> {{ product.subcategory_name }}</p>
+          <p><strong>Description:</strong> {{ product.description}}</p>
+        </div>
+
+        <div *ngSwitchCase="'details'">
+          <h3>Variants:</h3>
+          <ion-list>
+            <ion-item *ngFor="let variant of product.variants">
+              <ion-label>{{ variant.color }}, Size: {{ variant.size }}</ion-label>
+              <ion-label>Stock: {{ variant.stock }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+
+        <div *ngSwitchCase="'reviews'">
+          <h3>Reviews:</h3>
+          <ion-list>
+            <ion-item *ngFor="let review of product.reviews">
+              <ion-label>Rating: {{ review.rating }}</ion-label>
+              <ion-label>Date: {{ review.createAt }}</ion-label>
+              <ion-label>Comment: {{ review.comment }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+
+<!--
+<ion-content class="ion-padding">
+  <div *ngIf="product">
+
+    <div class="product-properties">
+      <span class="product-size">
+              <h4>Size</h4>
+              <ul class="ul-size">
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li class="active">10</li>
+                <li>11</li>
+              </ul>
+            </span>
+      <span class="product-color">
+              <h4>Colour</h4>
+              <ul class="ul-color">
+                <li class="orange active"></li>
+                <li class="green"></li>
+                <li class="yellow"></li>
+              </ul>
+            </span>
+      <span class="product-price">
+              USD<b>23,453</b>
+            </span>
+    </div>
+  </div>
+</ion-content>
+ -->
