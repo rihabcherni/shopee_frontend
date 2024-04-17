@@ -1,10 +1,4 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      Product Details
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-visitor-header></app-visitor-header>
 
 <ion-content *ngIf="product">
   <ion-row>
@@ -88,14 +82,43 @@
         </div>
 
         <div *ngSwitchCase="'reviews'">
-          <h3>Reviews:</h3>
-          <ion-list>
-            <ion-item *ngFor="let review of product.reviews">
-              <ion-label>Rating: {{ review.rating }}</ion-label>
-              <ion-label>Date: {{ review.createAt }}</ion-label>
-              <ion-label>Comment: {{ review.comment }}</ion-label>
-            </ion-item>
-          </ion-list>
+          <h3>Customer Rating & Reviews:</h3>
+          <div class="rating">
+            <div class="total-rate">
+                <span>{{ calculatedRating.toFixed(2) }}</span>
+                <app-star-rating [(rating)]="calculatedRating"></app-star-rating>
+                <p class="color-text">{{ product.total_reviews }} ratings</p>
+            </div>
+            <ion-list>
+              <ion-item *ngFor="let rating of [1, 2, 3, 4, 5]">
+                <ion-label>({{ getNumberOfReviewsByRating(rating)}} clients)</ion-label>
+                <ion-icon *ngFor="let _ of getStarIcons(rating)" name="star" color="primary"></ion-icon>
+                <ion-progress-bar [value]="calculatePercentage(rating) / 100" color="primary"></ion-progress-bar>
+                <ion-label>{{ calculatePercentage(rating).toFixed(2) }}%</ion-label>
+              </ion-item>
+            </ion-list>
+          </div>
+          <div class="reviews-list">
+            <ion-card *ngFor="let review of product.reviews">
+              <ion-card-header>
+                <div class="rating-user">
+                  <div>
+                    <div  class="left">
+                      <ion-img [src]="review.user_image "></ion-img>
+                      <ion-label>{{ review.user_name }}</ion-label>
+                    </div>
+                    <ion-label>Date: {{ review.createAt | date: 'dd/MM/yyyy' }}</ion-label>
+                  </div>
+                  <div>
+                    <app-star-rating [(rating)]="review.rating"></app-star-rating>
+                  </div>
+              </div>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-label>{{ review.comment }}</ion-label>
+              </ion-card-content>
+            </ion-card>
+          </div>
         </div>
       </div>
     </ion-col>

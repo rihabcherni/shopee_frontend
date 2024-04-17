@@ -4,22 +4,22 @@ ion-header {
       --background: transparent;
       ion-avatar {
         background: white;
-       
+
       }
     }
   }
 
-  
+
   ion-content {
     * {
       font-family: lato;
     }
-  
-  
+
+
    .main-header {
     height: 45vh;
     width: 150%;
-    background: linear-gradient(10deg,  rgb(234, 97, 6) 20%, rgb(8, 7, 107) 100%);
+    background: linear-gradient(90deg,  rgb(234, 97, 6) 30%, rgba(255, 192, 66, 0.827) 100%);
     /* Replaced var(--ion-color-primary) with rgb(255, 179, 0) */
     box-shadow: 0 1px 10px var(--ion-color-light);
     border-radius: 0 0 50% 50%;
@@ -27,7 +27,7 @@ ion-header {
     margin-top: -60px;
   }
 
-  
+
     ion-grid {
       width: 100%;
       position: absolute;

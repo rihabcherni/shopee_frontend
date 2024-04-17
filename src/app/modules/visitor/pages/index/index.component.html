@@ -17,8 +17,8 @@
   </ion-toolbar>
   <div  *ngIf="randomOffer" class="offer-box">
       <div class="offer">
-      <span> <span class="offer-title">Offer: </span>{{ randomOffer.name }}</span>
-      <span class="discount">{{ randomOffer.discount }}%</span>
+        <span> <span class="offer-title">Offer: </span>{{ randomOffer.name }}</span>
+        <span class="discount">{{ randomOffer.discount }}%</span>
       </div>
     </div>
   <ion-row  class="ion-align-items-center">
@@ -35,6 +35,9 @@
   </ion-row>
 </ion-header>
 
+
+
+
 <ion-content>
   <ion-segment id="scroll" mode="md" [(ngModel)]="selectedSubcategory" scrollable *ngIf="subcategories.length > 0">
     <ion-segment-button *ngFor="let subcategory of subcategories" [value]="subcategory.name" (click)="selectSubCategory(subcategory.name)" [class.ion-activated]="selectedSubcategory === subcategory.name" style="background-image: url('{{ subcategory.image }}'); background-size: cover; background-position: center;height: 100px;">
@@ -46,7 +49,13 @@
       <swiper-slide>
         <ion-grid>
           <ion-row>
-            <ng-container *ngFor="let product of filteredProducts">
+            <ng-container *ngIf="filteredProducts.length === 0">
+              <div class="center-container">
+                <ion-img src="assets/not-found.PNG" alt="not found" class="not-found"></ion-img>
+                <p>No products found.</p>
+              </div>
+            </ng-container>
+            <ng-container  *ngFor="let product of filteredProducts">
               <ion-col size-md="6" size-lg="4" size="6">
                 <ion-card class="product-card">
                   <ion-card-header class="product-image" [ngStyle]="{ 'background-image': 'url(' + product.image + ')' }">
@@ -99,5 +108,4 @@
       </swiper-slide>
     </swiper-wrapper>
   </swiper-container>
-
 </ion-content>

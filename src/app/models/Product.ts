@@ -42,4 +42,6 @@ export interface Review {
   createAt: string;
   product: number;
   user: number;
+  user_name: string;
+  user_image: string;
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Product } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
 @Component({
   selector: 'app-product-details',
@@ -26,9 +28,13 @@ export class ProductDetailsComponent  implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
-    private productService: ProductService
+    private productService: ProductService,
+    private navCtrl: NavController,
+    private visitorHeaderService: VisitorHeaderService
   ) {
+    this.visitorHeaderService.pageTitle = 'Product Details';
   }
+
   ngOnInit() {
     this.productId = this.route.snapshot.params['id'];
     this.getProductDetails();
@@ -63,8 +69,6 @@ export class ProductDetailsComponent  implements OnInit {
     this.mainImageIndex = index;
     this.mainImageUrl = imageUrl;
   }
-
-
   getProductDetails() {
     this.productService.getProductDetails(this.productId?? 0)
       .subscribe(data => {
@@ -72,7 +76,6 @@ export class ProductDetailsComponent  implements OnInit {
         this.calculateRating();
       });
   }
-
   toggleItem(product: any) {
     this.show=false;
     let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
@@ -136,5 +139,26 @@ export class ProductDetailsComponent  implements OnInit {
     }
     product.quantity=cartItems[existingItemIndex].quantity;
     this.updateBadgeCount();
+  }
+
+  getStarRatings(): number[] {
+    const ratings = this.product?.reviews.map(review => review.rating);
+    return Array.from(new Set(ratings));
+  }
+
+  getNumberOfReviewsByRating(rating: number): number {
+    return this.product?.reviews.filter(review => review.rating === rating).length ?? 0;
+  }
+  calculatePercentage(rating: number): number {
+    const numberOfReviews = this.getNumberOfReviewsByRating(rating);
+    if (this.product?.total_reviews) {
+      return (numberOfReviews * 100) / this.product.total_reviews;
+    } else {
+      return 0;
+    }
+  }
+
+  getStarIcons(rating: number): number[] {
+    return Array.from({ length: rating });
   }
 }
