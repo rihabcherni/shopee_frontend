@@ -9,9 +9,7 @@ const routes: Routes = [
     component: SellerComponent,
     children: [
       { path: '', loadChildren: () => import('./pages/tab/tab.module').then(m => m.TabPageModule) }
-      
-    ] 
-
+    ]
   }
 ];
 

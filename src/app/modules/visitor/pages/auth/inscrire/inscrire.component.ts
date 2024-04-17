@@ -63,7 +63,7 @@ export class InscrireComponent  implements OnInit {
           localStorage.setItem('access_token', response.access_token);
           localStorage.setItem('full_name', response.data['first_name']+ " "+ response.data['last_name']);
           localStorage.setItem('email', response.data['email']);
-
+          localStorage.setItem('photo', response.data['photo']);
 
           this.router.navigateByUrl('/otp');
 

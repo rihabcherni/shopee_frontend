@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('type_user', response.type_user);
         localStorage.setItem('full_name', response.full_name);
         localStorage.setItem('email', response.email);
+        localStorage.setItem('photo', response.photo);
 
         const userType = response.type_user;
         switch (userType) {
