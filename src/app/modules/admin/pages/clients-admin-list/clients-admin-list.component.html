@@ -1,0 +1,48 @@
+<ion-content>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-toolbar>
+          <ion-text slot="start" class="title">
+            Clients
+          </ion-text>
+          <ion-button class="add" id="present-alert" slot="end" (click)="presentAlertAddClient()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item *ngFor="let client of clients">
+              <ion-thumbnail slot="start">
+                <img [src]="client?.photo">
+              </ion-thumbnail>
+              <ion-label>
+                <div>
+                  <h2>{{ client.first_name }} {{ client.last_name }}</h2>
+                  <p class="inf">Email {{ client.email }}</p>
+                  <p class="inf">Phone Number {{ client.phone_number }}</p>
+                  <h3>
+                    <ion-icon name="logo-facebook" style="color: #1877F2;"></ion-icon>
+                    <ion-icon name="logo-instagram" style="color: #E4405F;"></ion-icon>
+                    <ion-icon name="logo-twitter" style="color: #1DA1F2;"></ion-icon>
+                  </h3>
+                </div>
+                <div class="btn-action">
+                  <button slot="end"  id="showBtn" (click)="onSelectClient(client.id)">
+                    <ion-icon name="eye"></ion-icon>
+                  </button>
+                  <br/>
+                  <button slot="end" id="removeBtn" (click)="removeClient(client.id)">
+                    <ion-icon name="trash"></ion-icon>
+                  </button>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

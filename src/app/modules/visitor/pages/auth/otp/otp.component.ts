@@ -1,6 +1,7 @@
 import { Component, ViewChildren, QueryList } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 @Component({
@@ -15,6 +16,7 @@ export class OtpComponent  {
   email:string="";
   constructor(
     private authService: AuthService,
+    private alertService: AlertService,
     private navCtrl: NavController,private visitorHeaderService: VisitorHeaderService,
     private router: Router) {
       this.visitorHeaderService.pageTitle = 'OTP Verification';
@@ -33,7 +35,7 @@ export class OtpComponent  {
     try {
       const response = await this.authService.verifyOTP(enteredOTP);
       if (response && response.message === 'Account email verified successfully') {
-        this.authService.presentAlert('OTP verification successful!', response.message,'success-alert', 'assets/success-login.png');
+        this.alertService.presentAlert('OTP verification successful!', response.message,'success-alert', 'assets/success.png');
         const userType =  localStorage.getItem('type_user');
         setTimeout(()=>{
           switch (userType) {
@@ -51,10 +53,10 @@ export class OtpComponent  {
           }
         },2000)
       } else {
-        this.authService.presentAlert('OTP verification', 'Invalid OTP, user is already verified. Please try again.','failed-alert', 'assets/error.png');
+        this.alertService.presentAlert('OTP verification', 'Invalid OTP, user is already verified. Please try again.','failed-alert', 'assets/error.png');
       }
     } catch (error) {
-      this.authService.presentAlert('Error', 'An error occurred while verifying OTP. Please try again later.','failed-alert', 'assets/error.png');
+      this.alertService.presentAlert('Error', 'An error occurred while verifying OTP. Please try again later.','failed-alert', 'assets/error.png');
     }
   }
   goBackToLatestPage() {

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
@@ -37,7 +38,8 @@ export class RestPasswordModalComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-   private route: ActivatedRoute,
+    private route: ActivatedRoute,
+    private alertService: AlertService,
     private visitorHeaderService: VisitorHeaderService,
     private router: Router) {
     this.visitorHeaderService.pageTitle = 'Reset Password';
@@ -67,7 +69,7 @@ export class RestPasswordModalComponent implements OnInit {
 
       this.authService.setNewPassword(formData)
         .subscribe(response => {
-          this.authService.presentAlert('Success', 'Password reset successful','success-alert', 'assets/reset.png');
+          this.alertService.presentAlert('Success', 'Password reset successful','success-alert', 'assets/reset.png');
           const userType =  localStorage.getItem('type_user');
           setTimeout(()=>{
             switch (userType) {
@@ -86,7 +88,7 @@ export class RestPasswordModalComponent implements OnInit {
           },2000)
         }, error => {
           console.error('Password reset failed:', error);
-          this.authService.presentAlert('Success', 'Password reset failed','failed-alert', 'assets/error.png');
+          this.alertService.presentAlert('Success', 'Password reset failed','failed-alert', 'assets/error.png');
         });
     }
   }

@@ -1,0 +1,3 @@
+<div class="star-rating" [style.width.px]="totalWidth" (click)="setRating($event)">
+  <ion-icon *ngFor="let icon of icons" [name]="icon"></ion-icon>
+</div>

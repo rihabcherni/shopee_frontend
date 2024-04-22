@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { Product } from 'src/app/models/Product';
 import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
+import { formatDiscount } from 'src/app/utilities';
 
 @Component({
   selector: 'app-favorite',
@@ -21,17 +22,9 @@ export class FavoriteComponent  implements OnInit {
     this.favoriteItems = this.favoriteService.getFavorites();
     this.updateFavoriteBadgeCount();
   }
+
   formatDiscount(discount: any): string {
-    const discountNumber = parseFloat(discount);
-    if (!isNaN(discountNumber)) {
-      if (Number.isInteger(discountNumber)) {
-        return discountNumber.toString();
-      } else {
-        return discountNumber.toFixed(2);
-      }
-    } else {
-      return '0';
-    }
+    return formatDiscount(discount);
   }
   updateFavoriteBadgeCount() {
     const totalQuantity = this.favoriteService.calculateTotalQuantity();
@@ -47,5 +40,4 @@ export class FavoriteComponent  implements OnInit {
     }
     return result;
   }
-
 }

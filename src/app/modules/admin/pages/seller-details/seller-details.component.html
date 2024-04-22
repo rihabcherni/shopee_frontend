@@ -1,51 +1,43 @@
-
 <ion-content [fullscreen]="true" color="light">
-  <ion-toolbar>
-    <ion-back-button slot="start" defaultHref="/admin/sellers"></ion-back-button>
-  
-  </ion-toolbar>
   <ion-grid class="main-header">
+    <div class="back">
+      <ion-back-button slot="start" defaultHref="/admin/sellers"></ion-back-button>
+    </div>
     <div align="center">
       <ion-avatar>
-        <img src="assets/seller2.png">
+        <img [src]="seller.photo">
       </ion-avatar>
     </div>
+    <div class="back"></div>
   </ion-grid>
 
-  <ion-list >
+  <ion-list>
     <ion-item>
-      <ion-label>
-        <ion-text>
-          Name
-        </ion-text>
-        <p><ion-text color="dark">Ben Amor Ranim</ion-text></p>
-      </ion-label>
+      <ion-icon size="medium" name="person" slot="start"></ion-icon>
+      <ion-input type="text" [(ngModel)]="seller.first_name" [value]="seller.first_name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>
-        <ion-text>
-          Email
-        </ion-text>
-        <p><ion-text color="dark">BenAmorRanim&#64;gmail.com</ion-text></p>
-      </ion-label>
+      <ion-icon size="medium" name="person" slot="start"></ion-icon>
+      <ion-input type="text" [(ngModel)]="seller.last_name" [value]="seller.last_name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>
-        <ion-text>
-          Phone Number
-        </ion-text>
-        <p><ion-text color="dark">22065310</ion-text></p>
-      </ion-label>
+      <ion-icon size="medium" name="mail" slot="start"></ion-icon>
+      <ion-input type="email" [(ngModel)]="seller.email" [value]="seller.email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>
-        <ion-text>
-          Address
-        </ion-text>
-        <p><ion-text color="dark">Tunis - Ariana</ion-text></p>
-      </ion-label>
+      <ion-icon size="medium" name="call" slot="start"></ion-icon>
+      <ion-input type="tel" [(ngModel)]="seller.phone_number" [value]="seller.phone_number"></ion-input>
     </ion-item>
-    
+    <ion-item>
+      <ion-icon size="medium" name="calendar" slot="start"></ion-icon>
+      <ion-input type="date" [(ngModel)]="seller.date_of_birth" [value]="seller.date_of_birth"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon size="medium" name="location" slot="start"></ion-icon>
+      <ion-input type="text" [(ngModel)]="seller.address" [value]="seller.address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button class="button-upd" expand="full" (click)="updateSeller(seller.id)">Update Seller</ion-button>
+    </ion-item>
   </ion-list>
-
 </ion-content>

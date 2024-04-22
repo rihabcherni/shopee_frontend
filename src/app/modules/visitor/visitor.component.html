@@ -4,25 +4,25 @@
 
 <ion-tabs >
   <ion-tab-bar slot="bottom" *ngIf="!isWelcomePage">
-    <ion-tab-button tab="home">
+    <ion-tab-button href="home">
       <ion-icon name="home"></ion-icon>
       Home
     </ion-tab-button>
-    <ion-tab-button tab="store/categories">
+    <ion-tab-button href="store/categories">
       <ion-icon name="storefront-sharp"></ion-icon>
         Store
     </ion-tab-button>
-    <ion-tab-button tab="favorite">
+    <ion-tab-button href="favorite">
       <ion-icon name="heart"></ion-icon>
       <ion-badge>{{ favoriteItemCount }}</ion-badge>
       Favorite
     </ion-tab-button>
-    <ion-tab-button tab="cart" >
+    <ion-tab-button href="cart" >
       <ion-icon name="cart"></ion-icon>
       <ion-badge>{{ cartItemCount }}</ion-badge>
       Cart
     </ion-tab-button>
-    <ion-tab-button tab="profil-visiteur">
+    <ion-tab-button href="profil-visiteur">
       <ion-icon name="person-sharp"></ion-icon>
       Profil
     </ion-tab-button>

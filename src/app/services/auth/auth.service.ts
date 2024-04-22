@@ -29,24 +29,4 @@ export class AuthService {
   setNewPassword(data: any) {
     return this.http.patch(this.apiUrl+'set-new-password/', data);
   }
-
-
-  async presentAlert(header: string, message: string, cssClass: string, imageUrl: string) {
-    const alert = await this.alertController.create({
-      header,
-      cssClass,
-      message: `
-        <div>
-          <img src="${imageUrl}">
-          <p>${message}</p>
-        </div>
-      `,
-    });
-
-    await alert.present();
-    setTimeout(() => {
-      alert.dismiss();
-    }, 3000);
-  }
-
 }

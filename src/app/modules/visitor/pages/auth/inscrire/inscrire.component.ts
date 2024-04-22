@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
@@ -19,6 +20,7 @@ export class InscrireComponent  implements OnInit {
       private authService: AuthService,
       private router: Router,
       private formBuilder: FormBuilder,
+      private alertService:AlertService,
       private visitorHeaderService: VisitorHeaderService,
     ) {
       this.visitorHeaderService.pageTitle = 'Create Account';
@@ -54,7 +56,7 @@ export class InscrireComponent  implements OnInit {
         const confirmPassword = confirmPasswordControl.value;
 
         if (password !== confirmPassword) {
-          this.authService.presentAlert('Error', 'Passwords do not match.', 'failed-alert', 'assets/error.png');
+          this.alertService.presentAlert('Error', 'Passwords do not match.', 'failed-alert', 'assets/error.png');
           return;
         }
 
@@ -63,11 +65,13 @@ export class InscrireComponent  implements OnInit {
           localStorage.setItem('access_token', response.access_token);
           localStorage.setItem('full_name', response.data['first_name']+ " "+ response.data['last_name']);
           localStorage.setItem('email', response.data['email']);
-          localStorage.setItem('photo', response.data['photo']);
+          localStorage.setItem('photo', "assets/man.png");
+          localStorage.removeItem('favoriteItems');
+          localStorage.removeItem('cartItems');
 
           this.router.navigateByUrl('/otp');
 
-          this.authService.presentAlert('Registration successful.', response.message,'success-alert', 'assets/success-login.png');
+          this.alertService.presentAlert('Registration successful.', response.message,'success-alert', 'assets/success-login.png');
         } catch (error) {
           let emailError = '';
           let passwordError = '';
@@ -77,7 +81,7 @@ export class InscrireComponent  implements OnInit {
             emailError = errorData.email ? errorData.email.join(', ') : '';
             passwordError = errorData.password ? errorData.password.join(', ') : '';
           }
-          this.authService.presentAlert('Error', `Registration failed. Please try again later.
+          this.alertService.presentAlert('Error', `Registration failed. Please try again later.
           <p>Email: ${emailError}</p> <p>Password: ${passwordError}</p>
           `, 'failed-alert', 'assets/error.png');
          }

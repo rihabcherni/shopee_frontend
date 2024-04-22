@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 
@@ -17,7 +18,8 @@ export class ForgotPasswordComponent implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private visitorHeaderService: VisitorHeaderService,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService
   ) {
     this.visitorHeaderService.pageTitle = 'Forgot Password';
     this.visitorHeaderService.subpageTitle = '';
@@ -30,13 +32,13 @@ export class ForgotPasswordComponent implements OnInit {
     if (this.validateEmail(this.email)) {
       try {
         const response = await this.authService.sendResetLink(this.email).toPromise();
-        this.authService.presentAlert('Success', 'Reset link sent successfully to ' + this.email,'success-alert', 'assets/forgot.png');
+        this.alertService.presentAlert('Success', 'Reset link sent successfully to ' + this.email,'success-alert', 'assets/forgot.png');
         this.router.navigateByUrl(`/reset-password/${response.uidb64}/${response.token}`);
       } catch (error) {
-        this.authService.presentAlert('Error', 'Failed to send reset link. Please try again later.','failed-alert', 'assets/error.png');
+        this.alertService.presentAlert('Error', 'Failed to send reset link. Please try again later.','failed-alert', 'assets/error.png');
       }
     } else {
-      this.authService.presentAlert('Error', 'Please enter a valid email','failed-alert', 'assets/error.png');
+      this.alertService.presentAlert('Error', 'Please enter a valid email','failed-alert', 'assets/error.png');
     }
   }
 

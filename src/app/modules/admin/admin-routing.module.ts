@@ -6,6 +6,10 @@ import { SellerListComponent } from './pages/seller-list/seller-list.component';
 import { SellerDetailsComponent } from './pages/seller-details/seller-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SubcategoryComponent } from './pages/subcategory/subcategory.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ClientsAdminListComponent } from './pages/clients-admin-list/clients-admin-list.component';
+import { ClientsDetailsAdminComponent } from './pages/clients-details-admin/clients-details-admin.component';
 
 const routes: Routes = [
   {
@@ -14,9 +18,12 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'sellers', component: SellerListComponent },
-      { path: 'profil', component: ProfileComponent }, 
+      { path: 'clients', component: ClientsAdminListComponent },
+      { path: 'profil', component: ProfileComponent },
       { path: 'seller-details/:id', component: SellerDetailsComponent },
-
+      { path: 'client-details/:id', component: ClientsDetailsAdminComponent },
+      { path: 'category/:id/subcategories', component: SubcategoryComponent },
+      { path: 'category/:category/subcategories/:subcategory/products', component: ProductsComponent },
     ]
   }
 ];

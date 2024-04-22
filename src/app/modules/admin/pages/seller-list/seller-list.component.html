@@ -1,62 +1,46 @@
-
-<!-- <ion-header>
-  <ion-toolbar class="toolbar">
-    <ion-buttons slot="start">
-      <ion-back-button color="light" defaultHref="dashboard"> </ion-back-button>
-
-    </ion-buttons>
-    <ion-title>
-      Sellers
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
- <div class="container">
+  <div class="container">
     <ion-grid>
       <ion-row>
         <ion-toolbar>
-          <ion-text slot="start" style=" color:rgba(234, 97, 6, 0.837); font-size: 30px;margin-left: 20px;font-family: serif;">Sellers</ion-text>
-
-          <ion-button  id="present-alert" slot="end" style="margin-right: 15px;" size="small">
-            <ion-icon name="add" style=" color:#fff" ></ion-icon>
+          <ion-text slot="start" class="title">
+            Sellers
+          </ion-text>
+          <ion-button class="add" id="present-alert" slot="end" (click)="presentAlertAddSeller()">
+            <ion-icon name="add"></ion-icon>
           </ion-button>
-           <ion-alert
-             trigger="present-alert"
-             header="Seller's infos"
-             [buttons]="alertButtons"
-             [inputs]="alertInputs"
-              ></ion-alert>
         </ion-toolbar>
       </ion-row>
       <ion-row>
         <ion-col>
           <ion-list>
-            <ion-item *ngFor="let seller of sellers" >
+            <ion-item *ngFor="let seller of sellers">
               <ion-thumbnail slot="start">
-                <img [src]="seller?.photo" >
+                <img [src]="seller?.photo">
               </ion-thumbnail>
               <ion-label>
-                <h2>{{seller.nom}} {{seller.prenom}}</h2>
-                <p class="inf">Email {{seller.email}}</p>
-                <p class="inf">Phone Number {{seller.phone_nbr}}</p>
-
+                <div>
+                  <h2>{{ seller.first_name }} {{ seller.last_name }}</h2>
+                  <p class="inf">Email {{ seller.email }}</p>
+                  <p class="inf">Phone Number {{ seller.phone_number }}</p>
                   <h3>
                     <ion-icon name="logo-facebook" style="color: #1877F2;"></ion-icon>
-                    <ion-icon name="logo-instagram"  style="color: #E4405F;"></ion-icon>
-                    <ion-icon name="logo-twitter"  style="color: #1DA1F2;"></ion-icon>
-                    <!-- <ion-icon name="logo-google" style="color: #DB4437;"></ion-icon> -->
+                    <ion-icon name="logo-instagram" style="color: #E4405F;"></ion-icon>
+                    <ion-icon name="logo-twitter" style="color: #1DA1F2;"></ion-icon>
                   </h3>
-                  <span style="float: right;" >
-                  <button slot="end" id="btn" (click)="onSelectSeller(seller.id)" >
-                    More Details
-                  </button></span>
-
-
+                </div>
+                <div class="btn-action">
+                  <button slot="end"  id="showBtn" (click)="onSelectSeller(seller.id)">
+                    <ion-icon name="eye"></ion-icon>
+                  </button>
+                  <br/>
+                  <button slot="end" id="removeBtn" (click)="removeSeller(seller.id)">
+                    <ion-icon name="trash"></ion-icon>
+                  </button>
+                </div>
               </ion-label>
             </ion-item>
           </ion-list>
-
         </ion-col>
       </ion-row>
     </ion-grid>

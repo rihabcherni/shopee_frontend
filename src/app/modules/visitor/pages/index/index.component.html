@@ -39,11 +39,13 @@
 
 
 <ion-content>
-  <ion-segment id="scroll" mode="md" [(ngModel)]="selectedSubcategory" scrollable *ngIf="subcategories.length > 0">
-    <ion-segment-button *ngFor="let subcategory of subcategories" [value]="subcategory.name" (click)="selectSubCategory(subcategory.name)" [class.ion-activated]="selectedSubcategory === subcategory.name" style="background-image: url('{{ subcategory.image }}'); background-size: cover; background-position: center;height: 100px;">
-      <ion-label class="strokeme" >{{subcategory.name}}</ion-label>
+  <ion-segment class="subcategory" id="scroll" mode="md" [(ngModel)]="selectedSubcategory" scrollable *ngIf="subcategories.length > 0">
+    <ion-segment-button *ngFor="let subcategory of subcategories" [value]="subcategory.name" (click)="selectSubCategory(subcategory.name)" [class.ion-activated]="selectedSubcategory === subcategory.name" style="height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;">
+      <div  *ngIf="subcategory.image"  class="img-sub" style="background-image: url('{{ subcategory.image }}');"></div>
+      <ion-label class="title-subcategory">{{subcategory.name}}</ion-label>
     </ion-segment-button>
   </ion-segment>
+
   <swiper-container #swiper (swiper)="swiperSlideChanged($event)">
     <swiper-wrapper>
       <swiper-slide>

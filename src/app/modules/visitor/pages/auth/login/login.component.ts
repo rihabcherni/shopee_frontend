@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { AlertService } from 'src/app/services/alert/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
     private navCtrl: NavController,
     private authService: AuthService,
     private router: Router,
+    private alertService: AlertService,
     private formBuilder: FormBuilder,
     private visitorHeaderService: VisitorHeaderService,
   ) {
@@ -51,6 +53,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', response.email);
         localStorage.setItem('photo', response.photo);
 
+        localStorage.removeItem('favoriteItems');
+        localStorage.removeItem('cartItems');
+        
         const userType = response.type_user;
         switch (userType) {
           case 'admin':
@@ -65,10 +70,10 @@ export class LoginComponent implements OnInit {
           default:
             break;
         }
-        this.authService.presentAlert('Login successful.', 'Your account is ready to use. You will be redirected to the Home page in a few seconds.', 'success-alert','assets/success-login.png');
+        this.alertService.presentAlert('Login successful.', 'Your account is ready to use. You will be redirected to the Home page in a few seconds.', 'success-alert','assets/success-login.png');
       } catch (error) {
         console.error('Login failed:', error);
-        this.authService.presentAlert('Error', 'Login failed. Please check your credentials.', 'failed-alert','assets/error.png');
+        this.alertService.presentAlert('Error', 'Login failed. Please check your credentials.', 'failed-alert','assets/error.png');
       }
     }
   }

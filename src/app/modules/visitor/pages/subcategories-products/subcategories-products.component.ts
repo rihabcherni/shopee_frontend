@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Subcategory } from 'src/app/models/Subcategory';
 import { ProductStoreService } from 'src/app/services/product-store/product-store.service';
+import { formatDiscount } from 'src/app/utilities';
 
 @Component({
   selector: 'app-subcategories-products',
@@ -37,16 +38,7 @@ export class SubcategoriesProductsComponent  implements OnInit {
     return result;
   }
   formatDiscount(discount: any): string {
-    const discountNumber = parseFloat(discount);
-    if (!isNaN(discountNumber)) {
-      if (Number.isInteger(discountNumber)) {
-        return discountNumber.toString();
-      } else {
-        return discountNumber.toFixed(2);
-      }
-    } else {
-      return '0';
-    }
+    return formatDiscount(discount);
   }
 }
 

@@ -7,6 +7,7 @@ import { interval } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { FavoriteService } from 'src/app/services/favorite/favorite.service';
 import { Product } from 'src/app/models/Product';
+import { formatDiscount } from 'src/app/utilities';
 
 @Component({
   selector: 'app-index',
@@ -113,9 +114,12 @@ export class IndexComponent implements OnInit {
     const existingItemIndex = cartItems.findIndex((item: any) => item.id === product.id);
     if (existingItemIndex !== -1 && cartItems[existingItemIndex].quantity > 0) {
       cartItems[existingItemIndex].quantity -= 1;
+      if (cartItems[existingItemIndex].quantity === 0) {
+        cartItems.splice(existingItemIndex, 1);
+      }
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
-    product.quantity=cartItems[existingItemIndex].quantity;
+    product.quantity = cartItems[existingItemIndex] ? cartItems[existingItemIndex].quantity : 0;
     this.updateBadgeCount();
   }
   updateFavoriteBadgeCount() {
@@ -206,24 +210,14 @@ export class IndexComponent implements OnInit {
         .subscribe(products => {
           this.filteredProducts = products.map(product => ({
             ...product,
-            image: `http://localhost:8000${product.image}`
+            image: `${product.image}`
           }));
         });
     }
 }
-formatDiscount(discount: any): string {
-  const discountNumber = parseFloat(discount);
-  if (!isNaN(discountNumber)) {
-    if (Number.isInteger(discountNumber)) {
-      return discountNumber.toString();
-    } else {
-      return discountNumber.toFixed(2);
-    }
-  } else {
-    return '0';
+  formatDiscount(discount: any): string {
+    return formatDiscount(discount);
   }
-}
-
   goBack() {
     this.router.navigateByUrl('/');
   }

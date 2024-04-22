@@ -8,7 +8,12 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
+import { SubcategoryComponent } from './pages/subcategory/subcategory.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { StarComponent } from './components/star/star.component';
+import { ClientsAdminListComponent } from './pages/clients-admin-list/clients-admin-list.component';
+import { ClientsDetailsAdminComponent } from './pages/clients-details-admin/clients-details-admin.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -16,14 +21,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     SellerListComponent,
     SellerDetailsComponent,
     DashboardComponent,
-    MenuComponent
+    MenuComponent,
+    SubcategoryComponent,
+    ProductsComponent,
+    StarComponent,
+    ClientsAdminListComponent,
+    ClientsDetailsAdminComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
- 

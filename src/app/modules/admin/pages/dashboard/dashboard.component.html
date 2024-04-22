@@ -9,7 +9,7 @@
     </ion-avatar> -->
   </ion-item>
 </ion-header>
- 
+
 <ion-content [fullscreen]="true" color="light">
   <div class="main-header"></div>
   <ion-grid>
@@ -17,7 +17,7 @@
       <ion-col size="6">
         <ion-label>
           <ion-note color="light" class="ion-margin-start">
-            BE TRENDY, Since 
+            BE TRENDY, Since
           </ion-note>
           <p>
             <ion-chip color="light">
@@ -62,23 +62,19 @@
         </ion-card>
       </ion-col>
     </ion-row>
-
-    <ion-list>
-      <ion-list-header>
-        <ion-label>All CATEGORIES</ion-label>
+    <ion-list *ngIf="categories.length>0">
+      <ion-list-header class="title">
+        <ion-label>All categories</ion-label>
       </ion-list-header>
-      <ion-item lines="none" *ngFor="let item of transactions">
-        <ion-thumbnail  style="width: 50px; height: 50px; background-color: rgba(255, 196, 9, 0.1); border-radius: 5px; margin-right: 10px;">
-          <img [src]="item?.image"  style="width: 40px; height: 40px;margin-top: 5px; margin-left:5px" />
+      <ion-item lines="none" *ngFor="let item of categories" (click)="goToSubcategories(item.id)">
+        <ion-thumbnail class="img">
+          <img [src]="item?.image"/>
         </ion-thumbnail>
         <ion-label size="large" class="ion-text-wrap">
           <b>{{item.name}}</b>
-          
         </ion-label>
       </ion-item>
     </ion-list>
   </ion-grid>
-  
 
 </ion-content>
- 

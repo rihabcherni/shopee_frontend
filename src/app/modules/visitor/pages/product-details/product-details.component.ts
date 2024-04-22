@@ -5,6 +5,7 @@ import { Product } from 'src/app/models/Product';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { VisitorHeaderService } from 'src/app/services/visitor-header/visitor-header.service';
+import { calculateNewPrice, formatDiscount } from 'src/app/utilities';
 
 @Component({
   selector: 'app-product-details',
@@ -43,16 +44,7 @@ export class ProductDetailsComponent  implements OnInit {
     }
   }
   formatDiscount(discount: any): string {
-    const discountNumber = parseFloat(discount);
-    if (!isNaN(discountNumber)) {
-      if (Number.isInteger(discountNumber)) {
-        return discountNumber.toString();
-      } else {
-        return discountNumber.toFixed(2);
-      }
-    } else {
-      return '0';
-    }
+    return formatDiscount(discount);
   }
   calculateRating() {
     if (this.product && this.product.total_reviews !== 0) {
@@ -61,9 +53,9 @@ export class ProductDetailsComponent  implements OnInit {
       this.calculatedRating = 0;
     }
   }
-  calculateNewPrice(price: number, discount: string): number {
-    const discountValue = parseFloat(discount);
-    return price - (price * (discountValue / 100));
+
+  calculateNewPrice(product: any): number {
+    return calculateNewPrice(product)
   }
   updateMainImage(index: number, imageUrl: string) {
     this.mainImageIndex = index;
@@ -132,15 +124,14 @@ export class ProductDetailsComponent  implements OnInit {
     const existingItemIndex = cartItems.findIndex((item: any) => item.id === product.id);
     if (existingItemIndex !== -1 && cartItems[existingItemIndex].quantity > 0) {
       cartItems[existingItemIndex].quantity -= 1;
+      if (cartItems[existingItemIndex].quantity === 0) {
+        cartItems.splice(existingItemIndex, 1);
+      }
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
-    if(cartItems[existingItemIndex].quantity===0){
-      this.show=true;
-    }
-    product.quantity=cartItems[existingItemIndex].quantity;
+    product.quantity = cartItems[existingItemIndex] ? cartItems[existingItemIndex].quantity : 0;
     this.updateBadgeCount();
   }
-
   getStarRatings(): number[] {
     const ratings = this.product?.reviews.map(review => review.rating);
     return Array.from(new Set(ratings));
@@ -157,7 +148,6 @@ export class ProductDetailsComponent  implements OnInit {
       return 0;
     }
   }
-
   getStarIcons(rating: number): number[] {
     return Array.from({ length: rating });
   }
