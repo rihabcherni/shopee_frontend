@@ -1,3 +1,116 @@
-<p>
-  dashboard works!
-</p>
+<ion-header slot="fixed" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon size="large" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div>
+      <ion-title>Be-Trendy</ion-title>
+      <ion-searchbar class="custom-search-product" show-clear-button="focus" [(ngModel)]="searchQuery" (ionChange)="searchProducts($event)"></ion-searchbar>
+    </div>
+    <ion-buttons slot="end">
+      <ion-button (click)="openCart()">
+        <ion-icon size="large" name="cart"></ion-icon>
+        <ion-badge>{{ cartItemCount2 }}</ion-badge>
+      </ion-button>
+
+      <ion-button (click)="openFavorite()">
+        <ion-icon size="large" name="heart"></ion-icon>
+        <ion-badge>{{ favoriteItemCount2 }}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div  *ngIf="randomOffer" class="offer-box">
+      <div class="offer">
+        <span> <span class="offer-title">Offer: </span>{{ randomOffer.name }}</span>
+        <span class="discount">{{ randomOffer.discount }}%</span>
+      </div>
+    </div>
+  <ion-row  class="ion-align-items-center">
+    <ion-col size="11">
+      <ion-segment id="scroll" mode="md" [(ngModel)]="selectedCategory" scrollable>
+        <ion-segment-button *ngFor="let category of categories" [value]="category.name" (click)="selectProductCategory(category.name)" [class.ion-activated]="selectedCategory === category.name">
+          <ion-label>{{category.name}}</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-col>
+    <ion-col size="1" (click)="openCategory()" style="cursor: pointer;">
+      <ion-img style="max-width: 40px;" src="assets/icon/category.jpg"></ion-img>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <ion-segment class="subcategory" id="scroll" mode="md" [(ngModel)]="selectedSubcategory" scrollable *ngIf="subcategories.length > 0">
+    <ion-segment-button *ngFor="let subcategory of subcategories" [value]="subcategory.name" (click)="selectSubCategory(subcategory.name)" [class.ion-activated]="selectedSubcategory === subcategory.name" style="height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;">
+      <div  *ngIf="subcategory.image"  class="img-sub" style="background-image: url('{{ subcategory.image }}');"></div>
+      <ion-label class="title-subcategory">{{subcategory.name}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <swiper-container #swiper (swiper)="swiperSlideChanged($event)">
+    <swiper-wrapper>
+      <swiper-slide>
+        <ion-grid>
+          <ion-row>
+            <ng-container *ngIf="filteredProducts.length === 0">
+              <div class="center-container">
+                <ion-img src="assets/not-found.PNG" alt="not found" class="not-found"></ion-img>
+                <p>No products found.</p>
+              </div>
+            </ng-container>
+            <ng-container  *ngFor="let product of filteredProducts">
+              <ion-col size-md="6" size-lg="4" size="6">
+                <ion-card class="product-card">
+                  <ion-card-header class="product-image" [ngStyle]="{ 'background-image': 'url(' + product.image + ')' }">
+                    <ion-row>
+                      <ion-col size="3">
+                        <p class="discount" *ngIf="product.discount !== '0.00'" >{{ formatDiscount(product.discount) }}%</p>
+                      </ion-col>
+                      <ion-col size="6" class="show-more">
+                        <ion-icon name="eye-outline" size="large" class="eye-icon" (click)="openProductDetails(product.id)"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-icon class="favorite" size="large" color="light" name="heart-sharp" (click)="toggleFavorite(product)"></ion-icon>
+                    <ion-card-title>{{ product.name }}</ion-card-title>
+                    <ion-card-subtitle class="brand">{{ product.brand }}</ion-card-subtitle>
+                    <ion-grid>
+                      <ion-row class="price-container">
+                        <ion-col size="9" *ngIf="product.discount !== '0.00'">
+                          <p class="new-price">${{ product.price - (product.price * product.discount / 100) }}</p>
+                          <p class="price">${{ product.price }}</p>
+                        </ion-col>
+                        <ion-col size="9" *ngIf="product.discount === '0.00'">
+                          <p class="new-price">${{ product.price }}</p>
+                        </ion-col>
+                        <ion-col size="3">
+                          <ion-badge class="rating">
+                            <ion-icon name="star" size="small"></ion-icon>
+                            <span class="rating-value">{{ product.total_reviews > 0 ? (product.total_ratings / product.total_reviews % 1 !== 0 ? (product.total_ratings / product.total_reviews).toFixed(2) : (product.total_ratings / product.total_reviews)) : 0 }}</span>
+                          </ion-badge>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                    <ion-button *ngIf="product.quantity === 0" expand="block" class="cart-button" (click)="toggleItem(product)">
+                      Add
+                      <ion-icon class="spaced-icon" slot="end" size="large" icon="cart"></ion-icon>
+                    </ion-button>
+
+                    <ion-row *ngIf="product.quantity > 0" class="product-panier">
+                      <ion-button color="danger" expand="block" class="cart-button-red" (click)="decrementItem(product)">-</ion-button>
+                      {{ product.quantity }}
+                      <ion-button color="success" expand="block" class="cart-button-green" (click)="incrementItem(product)">+</ion-button>
+                    </ion-row>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ng-container>
+          </ion-row>
+        </ion-grid>
+      </swiper-slide>
+    </swiper-wrapper>
+  </swiper-container>
+</ion-content>

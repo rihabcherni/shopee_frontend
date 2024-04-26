@@ -1,10 +1,30 @@
-<ion-header>
-</ion-header>
-
 <ion-content>
   <ion-router-outlet></ion-router-outlet>
 </ion-content>
 
-<ion-footer>
-
-</ion-footer>
+<ion-tabs >
+  <ion-tab-bar slot="bottom" *ngIf="!isWelcomePage">
+    <ion-tab-button href="client">
+      <ion-icon name="home"></ion-icon>
+      Home
+    </ion-tab-button>
+    <ion-tab-button href="client/store/categories">
+      <ion-icon name="storefront-sharp"></ion-icon>
+        Store
+    </ion-tab-button>
+    <ion-tab-button href="client/favorite">
+      <ion-icon name="heart"></ion-icon>
+      <ion-badge>{{ favoriteItemCount }}</ion-badge>
+      Favorite
+    </ion-tab-button>
+    <ion-tab-button href="client/cart" >
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge>{{ cartItemCount }}</ion-badge>
+      Cart
+    </ion-tab-button>
+    <ion-tab-button href="client/profil">
+      <ion-icon name="person-sharp"></ion-icon>
+      Profil
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
